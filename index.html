@@ -2,11 +2,122 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Data Analyst & Business Intelligence Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
-    <h1>Welcome to My Portfolio</h1>
-    <p>Hi, I'm welcome to my port folio.</p>
-</div>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-blue-600 uppercase tracking-wider">Your Name</h1>
+            <div class="space-x-6">
+                <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
+                <a href="#services" class="hover:text-blue-600 transition">Services</a>
+                <a href="#contact" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">Hire Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section: Selling the Solution -->
+    <header class="bg-white py-20 border-b">
+        <div class="max-w-4xl mx-auto text-center px-4">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+                I help businesses turn <span class="text-blue-600">messy data</span> into <span class="text-green-600">profitable decisions.</span>
+            </h2>
+            <p class="text-xl text-gray-600 mb-8">
+                Freelance Data Analyst specializing in automated dashboards, market trends, and predictive modeling. 
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#projects" class="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 transition">View My Work</a>
+                <a href="https://linkedin.com/in/yourprofile" class="border border-gray-300 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">LinkedIn</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Section -->
+    <section id="projects" class="py-20 max-w-6xl mx-auto px-4">
+        <h3 class="text-3xl font-bold mb-12 text-center">Featured Projects</h3>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Project 1 Card -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden border hover:shadow-lg transition">
+                <div class="h-48 bg-blue-100 flex items-center justify-center">
+                    <!-- Replace with your dashboard screenshot -->
+                    <i class="fas fa-chart-line text-6xl text-blue-400"></i>
+                </div>
+                <div class="p-6">
+                    <span class="text-blue-600 font-bold text-sm uppercase">E-Commerce Analysis</span>
+                    <h4 class="text-xl font-bold mt-2 mb-3">Customer Churn & Retention Dashboard</h4>
+                    <p class="text-gray-600 mb-4 text-sm">Reduced customer churn by 12% by identifying key drop-off points in the sales funnel using SQL and Tableau.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-100 px-3 py-1 rounded text-xs font-medium">Python</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded text-xs font-medium">SQL</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded text-xs font-medium">Tableau</span>
+                    </div>
+                    <a href="#" class="text-blue-600 font-bold hover:underline">View Case Study &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Project 2 Card -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden border hover:shadow-lg transition">
+                <div class="h-48 bg-green-100 flex items-center justify-center">
+                    <i class="fas fa-database text-6xl text-green-400"></i>
+                </div>
+                <div class="p-6">
+                    <span class="text-green-600 font-bold text-sm uppercase">Automation</span>
+                    <h4 class="text-xl font-bold mt-2 mb-3">Automated Inventory Management System</h4>
+                    <p class="text-gray-600 mb-4 text-sm">Automated weekly reporting for a retail client, saving 15 hours of manual work per month using Python and Google Sheets API.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-100 px-3 py-1 rounded text-xs font-medium">Pandas</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded text-xs font-medium">APIs</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded text-xs font-medium">Cloud</span>
+                    </div>
+                    <a href="#" class="text-blue-600 font-bold hover:underline">View Case Study &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services for Clients -->
+    <section id="services" class="bg-gray-900 text-white py-20">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h3 class="text-3xl font-bold mb-12">How I Can Help Your Business</h3>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div>
+                    <i class="fas fa-bolt text-3xl text-yellow-400 mb-4"></i>
+                    <h5 class="text-xl font-bold mb-2">Automated Reporting</h5>
+                    <p class="text-gray-400 text-sm">Stop wasting time on manual Excel updates. I build dashboards that refresh themselves.</p>
+                </div>
+                <div>
+                    <i class="fas fa-search-dollar text-3xl text-green-400 mb-4"></i>
+                    <h5 class="text-xl font-bold mb-2">Marketing Attribution</h5>
+                    <p class="text-gray-400 text-sm">Identify which marketing channels are actually driving sales and ROI.</p>
+                </div>
+                <div>
+                    <i class="fas fa-brain text-3xl text-blue-400 mb-4"></i>
+                    <h5 class="text-xl font-bold mb-2">Predictive Analytics</h5>
+                    <p class="text-gray-400 text-sm">Forecast demand and trends to stay ahead of your competitors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / CTA -->
+    <section id="contact" class="py-20 text-center px-4">
+        <h3 class="text-3xl font-bold mb-4">Ready to unlock your data's potential?</h3>
+        <p class="text-xl text-gray-600 mb-8">Currently accepting new freelance projects for Q3 2026.</p>
+        <a href="mailto:your@email.com" class="bg-blue-600 text-white px-10 py-4 rounded-full text-lg font-bold hover:bg-blue-700 shadow-xl transition">
+            Let's Talk About Your Project
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t text-center text-gray-500 text-sm">
+        <p>&copy; 2026 Your Name. Built with 💻 and Data.</p>
+    </footer>
+
 </body>
 </html>
