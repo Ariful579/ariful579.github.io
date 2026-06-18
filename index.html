@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ariful Mondal | Portfolio</title>
+    <title> Ariful Mondal | Portfolio</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -128,4 +128,339 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            background: rgba(30, 41, 59, 0.8);
+        }
+
+        .project-card h3 { font-size: 1.2rem; margin-bottom: 1rem; color: #fff; }
+        .project-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
+
+        .tech-tag {
+            font-size: 0.7rem;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-right: 5px;
+        }
+
+        .project-links { margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .project-links a { color: var(--text-main); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+        .project-links a:hover { color: var(--accent); }
+
+        /* Modal Settings */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px); z-index: 2000;
+            justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background: #1e293b; padding: 2.5rem; border-radius: 20px; width: 90%; max-width: 450px;
+            position: relative; border: 1px solid var(--accent); text-align: center;
+        }
+
+        /* Direct Contact Layout Styles */
+        .contact-detail-card {
+            background: #0f172a;
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            margin-bottom: 1rem;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .contact-detail-card i {
+            font-size: 1.3rem;
+            color: var(--accent);
+            width: 25px;
+            text-align: center;
+        }
+        .contact-detail-card div p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+        .contact-detail-card div h4 {
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        .contact-detail-card a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .contact-detail-card a:hover {
+            text-decoration: underline;
+        }
+
+        .modal-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .modal-socials a {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+        .modal-socials a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .btn {
+            padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none;
+            font-weight: 700; cursor: pointer; transition: 0.3s; border: none;
+            display: inline-block;
+        }
+        .btn-primary { background-color: var(--accent); color: #020617; }
+        .btn-secondary { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+
+        footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body>
+
+    <div class="bg-blur" style="top: 10%; left: 10%;"></div>
+
+    <nav>
+        <div style="font-weight: 800; font-size: 1.2rem; color: var(--accent);">ARIFUL.</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#featured">Featured</a>
+            <a href="#all-projects">All Projects</a>
+            <a onclick="document.getElementById('contactModal').style.display = 'flex'">Contact</a>
+        </div>
+    </nav>
+
+    <header id="about">
+        <img src="Myphoto.png" alt="Ariful Mondal" class="profile-img">
+        <h1>Ariful Mondal</h1>
+        <p class="hero-subtitle">Data Analysis | Data Science | Machine Learning</p>
+        <div style="margin-top: 2rem;">
+            <a onclick="document.getElementById('contactModal').style.display = 'flex'" class="btn btn-primary">Let's Talk</a>
+            <a href="#featured" class="btn btn-secondary">Featured Work</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="featured">
+            <h2><i class="fas fa-star"></i> Featured Projects</h2>
+            
+            <div class="project-group-title">Data Analytics </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Customer Shopping Behavior</h3>
+                    <p>Designed Python-to-MySQL pipeline for 3,900 accounts ($233K revenue). Proved 76% revenue from Clothing & Accessories.</p>
+                    <div><span class="tech-tag">Power BI</span><span class="tech-tag">MySQL</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Customer-Shopping-Behavior-Analysis" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Telecom Churn Analysis</h3>
+                    <p>Interactive dashboard tracking 26.53% churn. Isolated $2.86M revenue leakage using automated slicers.</p>
+                    <div><span class="tech-tag">Excel</span><span class="tech-tag">Slicers</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Telecom-Customer-Churn-Analysis-Dashboard-Report" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Inventory & Supply Chain</h3>
+                    <p>Leveraged 2+ years of SC experience to propose strategies reducing stockouts by 12%.</p>
+                    <div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Inventory-and-Supply-Chain-Project" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>HR Analytics Dashboard</h3>
+                    <p>Identified critical risk factors causing employee attrition through advanced Power BI visuals.</p>
+                    <div><span class="tech-tag">Power BI</span><span class="tech-tag">DAX</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/HR-Analysis-with-Power-BI" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Sales & Revenue Analytics</h3>
+                    <p>Built automated reporting pipelines via Power Query to uncover seasonal macro revenue trends.</p>
+                    <div><span class="tech-tag">Excel</span><span class="tech-tag">Power Query</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Data-Analysis-with-Excel" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
+                </div>
+            </div>
+
+            <div class="project-group-title">Data Science & DL Projects</div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Gold Price Prediction</h3>
+                    <p>High-accuracy forecasting system achieving an R² score of 0.92 using Random Forest Regressor.</p>
+                    <div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">ML</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Gold-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Sonar Rock vs Mine</h3>
+                    <p>Binary classification of acoustic signals with 85% accuracy using Artificial Neural Networks (ANN).</p>
+                    <div><span class="tech-tag">TensorFlow</span><span class="tech-tag">ANN</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Sonar-Rock-vs-Mine-Prediction" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Diabetes Prediction</h3>
+                    <p>Predictive modeling using clinical indicators like Glucose and BMI to identify diabetic risks.</p>
+                    <div><span class="tech-tag">SVM</span><span class="tech-tag">NumPy</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/diabetes_prediction" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="all-projects">
+            <h2><i class="fas fa-folder-open"></i> Full Projects Showcase</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Customer Shopping Behavior</h3>
+                    <p>Designed an end-to-end data architecture to analyze consumer purchasing trends across 3,900 accounts, capturing $233.08K in total revenue.</p>
+                    <div><span class="tech-tag">Python</span><span class="tech-tag">MySQL</span><span class="tech-tag">Power BI</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Customer-Shopping-Behavior-Analysis" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Telecom Customer Churn</h3>
+                    <p>Engineered an interactive corporate analytical app tracking a 26.53% churn rate and isolated a $2.86M absolute revenue leakage.</p>
+                    <div><span class="tech-tag">Excel</span><span class="tech-tag">Pivot Tables</span><span class="tech-tag">Slicers</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Telecom-Customer-Churn-Analysis-Dashboard-Report" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Inventory & Supply Chain</h3>
+                    <p>Proposed data-driven strategies to reduce stockouts by 12% leveraging historic portfolio operational data trends.</p>
+                    <div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span><span class="tech-tag">Matplotlib</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Inventory-and-Supply-Chain-Project" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>HR Analytics Dashboard</h3>
+                    <p>Identified 3 critical enterprise operational risk factors directly contributing to organizational employee attrition metrics.</p>
+                    <div><span class="tech-tag">Power BI</span><span class="tech-tag">Excel</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/HR-Analysis-with-Power-BI" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Sales & Revenue Analytics</h3>
+                    <p>Built automated corporate reporting pipelines via Power Query to uncover seasonal macro business trends.</p>
+                    <div><span class="tech-tag">Excel</span><span class="tech-tag">Power Query</span><span class="tech-tag">Pivot Tables</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Data-Analysis-with-Excel" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>ServiceNow Automation</h3>
+                    <p>Built a scoped application designed to orchestrate automated employee absence requests, enforce system constraints, and manage approval workflows.</p>
+                    <div><span class="tech-tag">ServiceNow</span><span class="tech-tag">Flow Designer</span><span class="tech-tag">UI Policies</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/ServiceNow-Leave-Management" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Gold Price Prediction</h3>
+                    <p>High-accuracy forecasting engine leveraging Random Forest Regressor models to achieve an R² score of 0.92.</p>
+                    <div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Random Forest</span><span class="tech-tag">Python</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Gold-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Sonar Rock vs. Mine</h3>
+                    <p>Achieved 85% accuracy in high-frequency acoustic signal categorization for target object classifications.</p>
+                    <div><span class="tech-tag">TensorFlow</span><span class="tech-tag">Keras</span><span class="tech-tag">ANN</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Sonar-Rock-vs-Mine-Prediction" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Deep Learning ANN</h3>
+                    <p>Engineered an Artificial Neural Network architecture optimized for multi-feature binary classification challenges.</p>
+                    <div><span class="tech-tag">TensorFlow</span><span class="tech-tag">Keras</span><span class="tech-tag">Python</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/ANN-Classification-Project" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Diabetes Prediction System</h3>
+                    <p>Built a predictive modeling pipeline using key medical clinical indicators to assess and identify diabetic risk factors.</p>
+                    <div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">SVM</span><span class="tech-tag">Joblib</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/diabetes_prediction" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Heart Disease Prediction</h3>
+                    <p>Developed a binary classification pipeline using clinical features like cholesterol and blood pressure to assess cardiovascular risk.</p>
+                    <div><span class="tech-tag">Logistic Regression</span><span class="tech-tag">Pandas</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Heart_disease_prediction" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Feature Engineering Framework</h3>
+                    <p>Implementation of data preprocessing pipelines, feature scaling, encoding mechanics, and automated transformation logic.</p>
+                    <div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span><span class="tech-tag">Scikit-learn</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Feature-Engineering-Project" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Machine Learning Pipelines</h3>
+                    <p>End-to-end deployment workflows connecting raw data ingestion, feature extraction, model tuning, and evaluation cycles.</p>
+                    <div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Joblib</span><span class="tech-tag">Python</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Machine-learning-pipelines-practical" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span onclick="document.getElementById('contactModal').style.display = 'none'" style="position: absolute; top: 15px; right: 20px; color: var(--text-muted); cursor: pointer; font-size: 1.2rem;"><i class="fas fa-times"></i></span>
+            
+            <h3 style="margin-bottom: 1.8rem; color: #fff;">Contact Information</h3>
+            
+            <div class="contact-detail-card">
+                <i class="fas fa-user"></i>
+                <div>
+                    <p>Name</p>
+                    <h4>Ariful Mondal</h4>
+                </div>
+            </div>
+
+            <div class="contact-detail-card">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <p>Email Address</p>
+                    <h4><a href="mailto:arifulmondal14082001@outlook.com">arifulmondal14082001@outlook.com</a></h4>
+                </div>
+            </div>
+
+            <a href="mailto:arifulmondal14082001@outlook.com" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem; text-align: center;">Open Default Mail App</a>
+
+            <div class="modal-socials">
+                <a href="https://github.com/Ariful579" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div style="margin-bottom: 1rem;">
+            <a href="https://github.com/Ariful579" target="_blank" style="color: var(--text-muted); margin: 0 10px; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349" target="_blank" style="color: var(--text-muted); margin: 0 10px; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.8rem;">&copy; 2026 Ariful Mondal | Data Scientist</p>
+    </footer>
+
+    <script>
+        // Modal Layout Close Trigger
+        window.onclick = function(e) { 
+            if(e.target == document.getElementById('contactModal')) {
+                document.getElementById('contactModal').style.display = 'none';
+            } 
+        }
+    </script>
+</body>
+</html>
