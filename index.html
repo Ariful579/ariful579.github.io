@@ -338,6 +338,13 @@
     <div class="form-group"><label>Message</label><textarea id="contactMessage" rows="4" required></textarea></div>
     <button type="submit" class="btn btn-primary" style="width: 100%;">Send via Email</button>
 </form>
+<script>
+<form onsubmit="sendEmail(event)">
+    <div class="form-group"><label>Name</label><input type="text" id="contactName" required></div>
+    <div class="form-group"><label>Email</label><input type="email" id="contactEmail" required></div>
+    <div class="form-group"><label>Message</label><textarea id="contactMessage" rows="4" required></textarea></div>
+    <button type="submit" class="btn btn-primary" style="width: 100%;">Send via Email</button>
+</form>
 
 <script>
 function sendEmail(e) {
@@ -349,6 +356,7 @@ function sendEmail(e) {
     // This opens the user's email app
     window.location.href = `mailto:arifulmondal14082001@outlook.com?subject=Portfolio Contact from ${name}&body=From: ${email}%0D%0A%0D%0A${message}`;
 }
+</script>
 </script>
 
     <footer>
