@@ -129,7 +129,7 @@
             border-bottom: 1px solid #334155;
         }
 
-        /* Project Overlay / Dropdown Menu View */
+        /* Project Display */
         .projects-menu {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -292,7 +292,7 @@
         <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem;">Leveraging Deep Learning and Predictive Analytics to solve complex classification and regression challenges.</p>
         
         <div class="cta-buttons">
-            <button class="btn btn-primary" onclick="openContactModal()">Let's Talk</button>
+            <button type="button" class="btn btn-primary" onclick="openContactModal(event)">Let's Talk</button>
             <a href="#projects-section" class="btn btn-secondary">View Projects</a>
         </div>
     </header>
@@ -452,23 +452,6 @@
         <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 Ariful Mondal. All rights reserved.</p>
     </footer>
 
-    <script>
-        function openContactModal() {
-            document.getElementById('contactModal').style.display = 'flex';
-        }
-
-        function closeContactModal() {
-            document.getElementById('contactModal').style.display = 'none';
-        }
-
-        // Close modal if user clicks anywhere outside of the form card box
-        window.onclick = function(event) {
-            let modal = document.getElementById('contactModal');
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
     <script>
         function openContactModal(event) {
             if (event) event.preventDefault(); 
