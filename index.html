@@ -60,6 +60,7 @@
         .nav-links a { 
             text-decoration: none; color: var(--text-muted); 
             font-size: 0.9rem; transition: 0.3s; font-weight: 500;
+            cursor: pointer;
         }
         .nav-links a:hover { color: var(--accent); }
 
@@ -202,7 +203,7 @@
             <a href="#about">About</a>
             <a href="#featured">Featured</a>
             <a href="#all-projects">All Projects</a>
-            <a href="javascript:void(0)" onclick="openModal()">Contact</a>
+            <a onclick="document.getElementById('contactModal').style.display = 'flex'">Contact</a>
         </div>
     </nav>
 
@@ -211,7 +212,7 @@
         <h1>Ariful Mondal</h1>
         <p class="hero-subtitle">Data Analysis | Data Science | Machine Learning</p>
         <div style="margin-top: 2rem;">
-            <a href="javascript:void(0)" onclick="openModal()" class="btn btn-primary">Let's Talk</a>
+            <a onclick="document.getElementById('contactModal').style.display = 'flex'" class="btn btn-primary">Let's Talk</a>
             <a href="#featured" class="btn btn-secondary">Featured Work</a>
         </div>
     </header>
@@ -316,6 +317,19 @@
 
     <div id="contactModal" class="modal">
         <div class="modal-content">
-            <span onclick="closeModal()" style="position: absolute; top: 15px; right: 20px; color: var(--text-muted); cursor: pointer; font-size: 1.2rem;"><i class="fas fa-times"></i></span>
+            <span onclick="document.getElementById('contactModal').style.display = 'none'" style="position: absolute; top: 15px; right: 20px; color: var(--text-muted); cursor: pointer; font-size: 1.2rem;"><i class="fas fa-times"></i></span>
             
             <h3 style="margin-bottom: 1.5rem; color: #fff; text-align: center;">Get In Touch</h3>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="contactName">Name</label>
+                    <input type="text" id="contactName" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email</label>
+                    <input type="email" id="contactEmail" required placeholder="Your Email Address">
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" rows="4" required placeholder
