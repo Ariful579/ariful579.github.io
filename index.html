@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Ariful Mondal | Portfolio</title>
+    <title>Ariful Mondal | Portfolio</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -67,7 +67,7 @@
         header {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 8rem 2rem 4rem;
+            padding: 8rem 2rem 2rem;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -114,6 +114,26 @@
             align-items: center;
             gap: 15px;
             color: var(--accent);
+        }
+
+        /* About Section Layout */
+        .about-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            margin-bottom: 4rem;
+            text-align: left;
+        }
+        .about-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        .about-card p strong {
+            color: #fff;
         }
 
         .project-group-title {
@@ -250,7 +270,7 @@
     <div class="bg-blur" style="top: 10%; left: 10%;"></div>
 
     <nav>
-        <div style="font-weight: 800; font-size: 1.2rem; color: var(--accent);">ARIFUL.</div>
+        <div style="font-weight: 800; font-size: 1.2rem; color: var(--accent);">ARIFUL MONDAL.</div>
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#featured">Featured</a>
@@ -259,7 +279,7 @@
         </div>
     </nav>
 
-    <header id="about">
+    <header id="about-hero">
         <img src="Myphoto.png" alt="Ariful Mondal" class="profile-img">
         <h1>Ariful Mondal</h1>
         <p class="hero-subtitle">Data Analysis | Data Science | Machine Learning</p>
@@ -270,10 +290,24 @@
     </header>
 
     <main>
+        <!-- ABOUT ME SECTION -->
+        <section id="about">
+            <h2><i class="fas fa-user-astronaut"></i> About Me</h2>
+            <div class="about-card">
+                <p>
+                    Hi, I'm <strong>Ariful Mondal</strong>. I am a Data Scientist and Machine Learning Engineer focused on converting complex raw datasets into high-performance predictive systems and clear, actionable business strategies. My expertise spans engineering automated data pipelines, constructing deep learning architectures, and building interactive business intelligence solutions that expose critical insights and protect operational revenue.
+                </p>
+                <p>
+                    With hands-on experience developing everything from high-accuracy regression models to advanced feature engineering frameworks and cloud-ready automation flows, I bridge the gap between complex algorithms and practical, real-world utility. I specialize in using tools like Python, TensorFlow, and Power BI to optimize processes and solve enterprise classification or regression challenges at scale.
+                </p>
+            </div>
+        </section>
+
+        <!-- FEATURED PROJECTS SECTION -->
         <section id="featured">
             <h2><i class="fas fa-star"></i> Featured Projects</h2>
             
-            <div class="project-group-title">Data Analytics </div>
+            <div class="project-group-title">Data Analytics (Top 5)</div>
             <div class="projects-grid">
                 <div class="project-card">
                     <h3>Customer Shopping Behavior</h3>
@@ -330,81 +364,95 @@
             </div>
         </section>
 
+        <!-- ALL PROJECTS SECTION -->
         <section id="all-projects">
             <h2><i class="fas fa-folder-open"></i> Full Projects Showcase</h2>
             <div class="projects-grid">
+                <!-- 1. Customer Shopping Behavior Analysis -->
                 <div class="project-card">
                     <h3>Customer Shopping Behavior</h3>
                     <p>Designed an end-to-end data architecture to analyze consumer purchasing trends across 3,900 accounts, capturing $233.08K in total revenue.</p>
                     <div><span class="tech-tag">Python</span><span class="tech-tag">MySQL</span><span class="tech-tag">Power BI</span></div>
                     <div class="project-links"><a href="https://github.com/Ariful579/Customer-Shopping-Behavior-Analysis" target="_blank">Repo <i class="fab fa-github"></i></a></div>
                 </div>
+                <!-- 2. Telecom Customer Churn Analysis -->
                 <div class="project-card">
                     <h3>Telecom Customer Churn</h3>
                     <p>Engineered an interactive corporate analytical app tracking a 26.53% churn rate and isolated a $2.86M absolute revenue leakage.</p>
                     <div><span class="tech-tag">Excel</span><span class="tech-tag">Pivot Tables</span><span class="tech-tag">Slicers</span></div>
                     <div class="project-links"><a href="https://github.com/Ariful579/Telecom-Customer-Churn-Analysis-Dashboard-Report" target="_blank">Repo <i class="fab fa-github"></i></a></div>
                 </div>
+                <!-- 3. Inventory & Supply Chain Analysis -->
                 <div class="project-card">
                     <h3>Inventory & Supply Chain</h3>
                     <p>Proposed data-driven strategies to reduce stockouts by 12% leveraging historic portfolio operational data trends.</p>
                     <div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span><span class="tech-tag">Matplotlib</span></div>
                     <div class="project-links"><a href="https://github.com/Ariful579/Inventory-and-Supply-Chain-Project" target="_blank">Repo <i class="fab fa-github"></i></a></div>
                 </div>
+                <!-- 4. HR Analytics Dashboard -->
                 <div class="project-card">
                     <h3>HR Analytics Dashboard</h3>
                     <p>Identified 3 critical enterprise operational risk factors directly contributing to organizational employee attrition metrics.</p>
                     <div><span class="tech-tag">Power BI</span><span class="tech-tag">Excel</span></div>
                     <div class="project-links"><a href="https://github.com/Ariful579/HR-Analysis-with-Power-BI" target="_blank">Repo <i class="fab fa-github"></i></a></div>
                 </div>
+                <!-- 5. Sales & Revenue Analytics -->
                 <div class="project-card">
                     <h3>Sales & Revenue Analytics</h3>
                     <p>Built automated corporate reporting pipelines via Power Query to uncover seasonal macro business trends.</p>
                     <div><span class="tech-tag">Excel</span><span class="tech-tag">Power Query</span><span class="tech-tag">Pivot Tables</span></div>
                     <div class="project-links"><a href="https://github.com/Ariful579/Data-Analysis-with-Excel" target="_blank">Repo <i class="fab fa-github"></i></a></div>
                 </div>
+                <!-- 6. ServiceNow Leave Management Automation System -->
                 <div class="project-card">
                     <h3>ServiceNow Automation</h3>
                     <p>Built a scoped application designed to orchestrate automated employee absence requests, enforce system constraints, and manage approval workflows.</p>
                     <div><span class="tech-tag">ServiceNow</span><span class="tech-tag">Flow Designer</span><span class="tech-tag">UI Policies</span></div>
                     <div class="project-links"><a href="https://github.com/Ariful579/ServiceNow-Leave-Management" target="_blank">Repo <i class="fab fa-github"></i></a></div>
                 </div>
+                <!-- 7. Gold Price Prediction System -->
                 <div class="project-card">
                     <h3>Gold Price Prediction</h3>
                     <p>High-accuracy forecasting engine leveraging Random Forest Regressor models to achieve an R² score of 0.92.</p>
                     <div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Random Forest</span><span class="tech-tag">Python</span></div>
                     <div class="project-links"><a href="https://github.com/Ariful579/Gold-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">Repo <i class="fab fa-github"></i></a></div>
                 </div>
+                <!-- 8. Sonar Rock vs. Mine Classification -->
                 <div class="project-card">
                     <h3>Sonar Rock vs. Mine</h3>
                     <p>Achieved 85% accuracy in high-frequency acoustic signal categorization for target object classifications.</p>
                     <div><span class="tech-tag">TensorFlow</span><span class="tech-tag">Keras</span><span class="tech-tag">ANN</span></div>
                     <div class="project-links"><a href="https://github.com/Ariful579/Sonar-Rock-vs-Mine-Prediction" target="_blank">Repo <i class="fab fa-github"></i></a></div>
                 </div>
+                <!-- 9. Deep Learning ANN Classification -->
                 <div class="project-card">
                     <h3>Deep Learning ANN</h3>
                     <p>Engineered an Artificial Neural Network architecture optimized for multi-feature binary classification challenges.</p>
                     <div><span class="tech-tag">TensorFlow</span><span class="tech-tag">Keras</span><span class="tech-tag">Python</span></div>
                     <div class="project-links"><a href="https://github.com/Ariful579/ANN-Classification-Project" target="_blank">Repo <i class="fab fa-github"></i></a></div>
                 </div>
+                <!-- 10. Diabetes Prediction System -->
                 <div class="project-card">
                     <h3>Diabetes Prediction System</h3>
                     <p>Built a predictive modeling pipeline using key medical clinical indicators to assess and identify diabetic risk factors.</p>
                     <div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">SVM</span><span class="tech-tag">Joblib</span></div>
                     <div class="project-links"><a href="https://github.com/Ariful579/diabetes_prediction" target="_blank">Repo <i class="fab fa-github"></i></a></div>
                 </div>
+                <!-- 11. Heart Disease Prediction -->
                 <div class="project-card">
                     <h3>Heart Disease Prediction</h3>
                     <p>Developed a binary classification pipeline using clinical features like cholesterol and blood pressure to assess cardiovascular risk.</p>
                     <div><span class="tech-tag">Logistic Regression</span><span class="tech-tag">Pandas</span></div>
                     <div class="project-links"><a href="https://github.com/Ariful579/Heart_disease_prediction" target="_blank">Repo <i class="fab fa-github"></i></a></div>
                 </div>
+                <!-- 12. Advanced Feature Engineering Framework -->
                 <div class="project-card">
                     <h3>Feature Engineering Framework</h3>
                     <p>Implementation of data preprocessing pipelines, feature scaling, encoding mechanics, and automated transformation logic.</p>
                     <div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span><span class="tech-tag">Scikit-learn</span></div>
                     <div class="project-links"><a href="https://github.com/Ariful579/Feature-Engineering-Project" target="_blank">Repo <i class="fab fa-github"></i></a></div>
                 </div>
+                <!-- 13. Practical Machine Learning Pipelines -->
                 <div class="project-card">
                     <h3>Machine Learning Pipelines</h3>
                     <p>End-to-end deployment workflows connecting raw data ingestion, feature extraction, model tuning, and evaluation cycles.</p>
@@ -415,12 +463,14 @@
         </section>
     </main>
 
+    <!-- DIRECT CONTACT MODAL (NO BACKEND REQUIRED) -->
     <div id="contactModal" class="modal">
         <div class="modal-content">
             <span onclick="document.getElementById('contactModal').style.display = 'none'" style="position: absolute; top: 15px; right: 20px; color: var(--text-muted); cursor: pointer; font-size: 1.2rem;"><i class="fas fa-times"></i></span>
             
             <h3 style="margin-bottom: 1.8rem; color: #fff;">Contact Information</h3>
             
+            <!-- Name Card -->
             <div class="contact-detail-card">
                 <i class="fas fa-user"></i>
                 <div>
@@ -429,6 +479,7 @@
                 </div>
             </div>
 
+            <!-- Email Card -->
             <div class="contact-detail-card">
                 <i class="fas fa-envelope"></i>
                 <div>
@@ -437,8 +488,10 @@
                 </div>
             </div>
 
+            <!-- Action Button to mail directly -->
             <a href="mailto:arifulmondal14082001@outlook.com" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem; text-align: center;">Open Default Mail App</a>
 
+            <!-- Quick Profile Connections -->
             <div class="modal-socials">
                 <a href="https://github.com/Ariful579" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349" target="_blank"><i class="fab fa-linkedin"></i></a>
