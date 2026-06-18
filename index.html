@@ -3,288 +3,471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ariful Mondal | Data Scientist & Machine Learning Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Ariful Mondal | Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #7dd3fc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-muted);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--card-bg);
+            padding-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        /* Matrix Table Styling */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .matrix-table th, .matrix-table td {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .matrix-table th {
+            background-color: #111827;
+            color: var(--accent);
+        }
+
+        .matrix-table tr:not(:last-child) {
+            border-bottom: 1px solid #334155;
+        }
+
+        /* Project Overlay / Dropdown Menu View */
+        .projects-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .project-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tech-stack {
+            font-size: 0.8rem;
+            background: #0f172a;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: var(--accent);
+        }
+
+        .git-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .git-link:hover {
+            color: var(--accent);
+        }
+
+        /* Contact Modal Box */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid var(--accent);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .close-modal:hover {
+            color: var(--text-main);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #fff;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent);
+        }
+
+        /* Footer / Contact Details Area */
+        footer {
+            background-color: #0b0f19;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-contacts {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--accent);
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans scroll-smooth">
+<body>
 
-    <!-- NAVIGATION -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold text-blue-600 uppercase tracking-wider">Ariful Mondal</h1>
-            <div class="space-x-6 flex items-center">
-                <a href="#projects" class="hover:text-blue-600 transition font-medium hidden sm:inline-block">Projects</a>
-                <a href="#services" class="hover:text-blue-600 transition font-medium hidden sm:inline-block">Services</a>
-                <a href="mailto:arifulmondal14082001@outlook.com?subject=Project%20Inquiry" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium shadow-sm">Hire Me</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO / HEADER -->
-    <header class="bg-white py-24 border-b">
-        <div class="max-w-4xl mx-auto text-center px-4">
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-                I help businesses turn <span class="text-blue-600">messy data</span> into <span class="text-green-600">profitable decisions.</span>
-            </h2>
-            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Data Scientist & Machine Learning Engineer specializing in automated reporting pipelines, advanced predictive analytics, and deep learning architectures.
-            </p>
-            <div class="flex justify-center gap-4">
-                <a href="#projects" class="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-900 transition shadow-md">View My Work</a>
-                <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349" target="_blank" class="border border-gray-300 bg-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition inline-flex items-center gap-2 shadow-sm">
-                    <i class="fab fa-linkedin text-blue-600"></i> LinkedIn
-                </a>
-            </div>
+    <header>
+        <h1>Ariful Mondal</h1>
+        <div class="subtitle">Data Scientist & Machine Learning Engineer</div>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem;">Leveraging Deep Learning and Predictive Analytics to solve complex classification and regression challenges.</p>
+        
+        <div class="cta-buttons">
+            <button class="btn btn-primary" onclick="openContactModal()">Let's Talk</button>
+            <a href="#projects-section" class="btn btn-secondary">View Projects</a>
         </div>
     </header>
 
-    <!-- FEATURED PROJECTS WITH FILTERS -->
-    <section id="projects" class="py-20 max-w-6xl mx-auto px-4">
-        <h3 class="text-3xl font-bold mb-4 text-center">Featured Projects</h3>
-        <p class="text-center text-gray-500 mb-10">Filter through production-ready pipelines and analytical intelligence reports.</p>
-        
-        <!-- Category Filter Buttons -->
-        <div class="flex justify-center gap-3 mb-12">
-            <button onclick="filterProjects('all')" id="btn-all" class="filter-btn bg-blue-600 text-white px-5 py-2 rounded-full font-medium transition shadow-sm">All Category</button>
-            <button onclick="filterProjects('analysis')" id="btn-analysis" class="filter-btn bg-white text-gray-600 border border-gray-200 px-5 py-2 rounded-full font-medium hover:bg-gray-50 transition shadow-sm">Data Analysis</button>
-            <button onclick="filterProjects('data-science')" id="btn-data-science" class="filter-btn bg-white text-gray-600 border border-gray-200 px-5 py-2 rounded-full font-medium hover:bg-gray-50 transition shadow-sm">Data Science</button>
-        </div>
-        
-        <!-- Interactive Projects Grid -->
-        <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Dynamically injected by JavaScript -->
-        </div>
-    </section>
+    <main>
+        <section>
+            <h2>🛠 Technical Skills Matrix</h2>
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Tools & Libraries</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Machine Learning</strong></td><td>Scikit-learn, Random Forest, SVM, Logistic Regression, XGBoost</td></tr>
+                    <tr><td><strong>Deep Learning</strong></td><td>TensorFlow, Keras, ANN, LangChain, Hugging Face</td></tr>
+                    <tr><td><strong>Data Manipulation</strong></td><td>Python, Pandas, NumPy, Power Query, PowerShell Scripting</td></tr>
+                    <tr><td><strong>Visualization</strong></td><td>Power BI, Matplotlib, Seaborn, Excel Dashboards / WPS Spreadsheets</td></tr>
+                    <tr><td><strong>IT & ITSM Platforms</strong></td><td>ServiceNow (Flow Designer, UI Policies), Splunk, Windows Endpoint Admin (MD-102)</td></tr>
+                </tbody>
+            </table>
+        </section>
 
-    <!-- SERVICES -->
-    <section id="services" class="bg-gray-900 text-white py-20">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h3 class="text-3xl font-bold mb-4">Core Technical Expertise</h3>
-            <p class="text-gray-400 max-w-2xl mx-auto mb-16">Deploying high-impact statistical systems and scalable operational architectures tailored to organizational KPIs.</p>
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-lg text-left">
-                    <div class="w-12 h-12 bg-yellow-400/10 rounded-lg flex items-center justify-center mb-6">
-                        <i class="fas fa-bolt text-2xl text-yellow-400"></i>
+        <section id="projects-section">
+            <h2>📊 Featured Projects Menu</h2>
+            <div class="projects-menu">
+                
+                <div class="project-card">
+                    <div>
+                        <div class="project-title">Customer Shopping Behavior Analysis</div>
+                        <div class="project-desc">Designed an end-to-end data pipeline analyzing 3,900 accounts ($233K revenue). Leveraged Python-to-MySQL ingestion and a Power BI dashboard confirming key revenue splits.</div>
                     </div>
-                    <h5 class="text-xl font-bold mb-3">Automated Business Intelligence</h5>
-                    <p class="text-gray-400 text-sm leading-relaxed">Stop wasting resources on fragile, manual tracking spreadsheets. I design enterprise pipelines via Power BI and advanced Power Query engines that refresh seamlessly.</p>
-                </div>
-                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-lg text-left">
-                    <div class="w-12 h-12 bg-green-400/10 rounded-lg flex items-center justify-center mb-6">
-                        <i class="fas fa-chart-line text-2xl text-green-400"></i>
+                    <div class="project-links">
+                        <span class="tech-stack">Power BI / Python / MySQL</span>
+                        <a href="https://github.com/Ariful579/Customer-Shopping-Behavior-Analysis" target="_blank" class="git-link"><i class="fab fa-github"></i></a>
                     </div>
-                    <h5 class="text-xl font-bold mb-3">Advanced Behavioral Analytics</h5>
-                    <p class="text-gray-400 text-sm leading-relaxed">Expose optimization vectors within raw transactional history. Isolate churn markers, trace structural revenue leaks, and maximize lifecycle metrics dynamically.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 shadow-lg text-left">
-                    <div class="w-12 h-12 bg-blue-400/10 rounded-lg flex items-center justify-center mb-6">
-                        <i class="fas fa-brain text-2xl text-blue-400"></i>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-title">Telecom Customer Churn Dashboard</div>
+                        <div class="project-desc">Engineered an interactive dashboard tracking a 26.53% portfolio churn rate, isolating $2.86M absolute revenue leakage.</div>
                     </div>
-                    <h5 class="text-xl font-bold mb-3">Predictive Machine Learning</h5>
-                    <p class="text-gray-400 text-sm leading-relaxed">Transition from reactive modeling to proactive engineering. Deploy production classification networks and regression estimators using Scikit-Learn and TensorFlow layers.</p>
+                    <div class="project-links">
+                        <span class="tech-stack">Excel / Slicers / Pivot</span>
+                        <a href="https://github.com/Ariful579/Telecom-Customer-Churn-Analysis" target="_blank" class="git-link"><i class="fab fa-github"></i></a>
+                    </div>
                 </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-title">Inventory & Supply Chain Analysis</div>
+                        <div class="project-desc">Proposed data-driven historical trend strategies engineered to proactively reduce operational stockouts by 12%.</div>
+                    </div>
+                    <div class="project-links">
+                        <span class="tech-stack">Python / Pandas / Seaborn</span>
+                        <a href="https://github.com/Ariful579/Inventory-and-Supply-Chain-Project" target="_blank" class="git-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-title">HR Analytics Dashboard</div>
+                        <div class="project-desc">Identified 3 critical enterprise operational risk factors directly causing shifts in employee attrition metrics.</div>
+                    </div>
+                    <div class="project-links">
+                        <span class="tech-stack">Power BI / Excel</span>
+                        <a href="https://github.com/Ariful579/HR-Analysis-with-Power-BI" target="_blank" class="git-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-title">Sales & Revenue Analytics</div>
+                        <div class="project-desc">Built automated pipeline reporting tracking macro seasonal revenue trends via complex automated logic models.</div>
+                    </div>
+                    <div class="project-links">
+                        <span class="tech-stack">Power Query / Pivot Tables</span>
+                        <a href="https://github.com/Ariful579/Data-Analysis-with-Excel" target="_blank" class="git-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-title">ServiceNow Leave Management</div>
+                        <div class="project-desc">Built a scoped system orchestrating automated employee absence workflow logic using customized UI policies.</div>
+                    </div>
+                    <div class="project-links">
+                        <span class="tech-stack">ServiceNow Platform</span>
+                        <a href="https://github.com/Ariful579/ServiceNow-Leave-Management" target="_blank" class="git-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-title">Gold Price Prediction System</div>
+                        <div class="project-desc">Achieved a high-accuracy validation R² score evaluation of 0.92 utilizing advanced modeling logic.</div>
+                    </div>
+                    <div class="project-links">
+                        <span class="tech-stack">Scikit-Learn / Python</span>
+                        <a href="https://github.com/Ariful579/Gold-Price-Prediction-Using-Random-Forest-Regressor" target="_blank" class="git-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-title">Sonar Rock vs. Mine Classification</div>
+                        <div class="project-desc">Structured deep neural net pipeline yielding 85% accuracy sorting multi-feature audio signals.</div>
+                    </div>
+                    <div class="project-links">
+                        <span class="tech-stack">TensorFlow / Keras ANN</span>
+                        <a href="https://github.com/Ariful579/Sonar-Rock-vs-Mine-Prediction" target="_blank" class="git-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
             </div>
+        </section>
+    </main>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeContactModal()">&times;</span>
+            <h3 style="margin-bottom: 1.5rem; color: var(--accent);">Send Me a Message</h3>
+            
+            <form action="https://formspree.io/f/xoqgqpkk" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="_replyto" placeholder="yourname@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                </div>
+                <input type="hidden" name="_to" value="arifulmondal14082001@outlook.com">
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
         </div>
-    </section>
+    </div>
 
-    <!-- CONTACT / LET'S TALK -->
-    <section id="contact" class="py-24 text-center px-4 bg-white border-t">
-        <h3 class="text-3xl font-bold mb-4">Ready to unlock your data's true potential?</h3>
-        <p class="text-xl text-gray-600 mb-4">Currently accepting new engineering opportunities and scalable freelance projects.</p>
-        <p class="text-sm text-gray-400 mb-8 max-w-sm mx-auto p-2 bg-gray-50 rounded-lg border">
-            <i class="fas fa-id-card text-blue-500 mr-1"></i> <strong>Direct Network Access:</strong> arifulmondal14082001@outlook.com
-        </p>
-        <a href="mailto:arifulmondal14082001@outlook.com?subject=Let's%20Build%20a%20Data%20Project" class="bg-blue-600 text-white px-10 py-4 rounded-full text-lg font-bold hover:bg-blue-700 shadow-xl transition inline-flex items-center gap-3 transform hover:-translate-y-0.5">
-            <i class="fas fa-envelope"></i> Let's Talk About Your Project
-        </a>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-10 bg-gray-50 border-t text-center text-gray-500 text-sm">
-        <p>&copy; 2026 Ariful Mondal. Developed for production deployment via GitHub Pages.</p>
+    <footer>
+        <div class="footer-contacts">
+            <a href="mailto:arifulmondal14082001@outlook.com" class="footer-link">
+                <i class="fas fa-envelope"></i> arifulmondal14082001@outlook.com
+            </a>
+            <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349" target="_blank" class="footer-link">
+                <i class="fab fa-linkedin"></i> LinkedIn Profile
+            </a>
+            <a href="https://github.com/Ariful579" target="_blank" class="footer-link">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 Ariful Mondal. All rights reserved.</p>
     </footer>
 
-    <!-- INTERACTIVE SCRIPTING LAYER -->
     <script>
-        // Production Array containing both Data Analysis and Data Science systems
-        const myProjects = [
-            {
-                type: "analysis",
-                category: "Data Analysis",
-                title: "Customer Shopping Behavior Analysis",
-                description: "Designed end-to-end data pipelines for 3.9K consumer accounts tracking $233.08K in revenue. Managed Python-to-MySQL data streams and structured Power BI dashboards mapping 2:1 gender distribution values.",
-                tags: ["Python", "MySQL", "Power BI"],
-                link: "https://github.com/Ariful579/Customer-Shopping-Behavior-Analysis",
-                iconClass: "fas fa-shopping-bag text-purple-500",
-                bgClass: "bg-purple-50"
-            },
-            {
-                type: "analysis",
-                category: "Data Analysis",
-                title: "Telecom Customer Churn Dashboard",
-                description: "Engineered corporate analytical platform with explicit slicer controls tracking a portfolio churn baseline of 26.53%. Isolated a $2.86M absolute revenue leakage pattern within early client life-cycles.",
-                tags: ["Excel", "Pivot Tables", "Power Query"],
-                link: "https://github.com/Ariful579/Telecom-Customer-Churn-Analysis",
-                iconClass: "fas fa-users-slash text-red-500",
-                bgClass: "bg-red-50"
-            },
-            {
-                type: "analysis",
-                category: "Data Analysis",
-                title: "Inventory & Supply Chain Project",
-                description: "Constructed structural optimizations focused on historical pipeline trends designed to mitigate retail supply issues and decrease enterprise product out-of-stock anomalies by up to 12%.",
-                tags: ["Python", "Pandas", "Matplotlib"],
-                link: "https://github.com/Ariful579/Inventory-and-Supply-Chain-Project",
-                iconClass: "fas fa-boxes text-amber-500",
-                bgClass: "bg-amber-50"
-            },
-            {
-                type: "analysis",
-                category: "Data Analysis",
-                title: "HR Corporate Attrition Analytics",
-                description: "Deployed dynamic Power BI analytical views tracking cross-departmental operations. Identified 3 specific systemic organization vectors linked directly to escalating workforce churn rates.",
-                tags: ["Power BI", "Excel Data", "DAX"],
-                link: "https://github.com/Ariful579/HR-Analysis-with-Power-BI",
-                iconClass: "fas fa-user-tie text-indigo-500",
-                bgClass: "bg-indigo-50"
-            },
-            {
-                type: "analysis",
-                category: "Data Analysis",
-                title: "Sales & Corporate Revenue Pipelines",
-                description: "Constructed end-to-end automated reporting macros within clean data workbooks to instantly isolate core seasonal margins and forecast rolling metrics.",
-                tags: ["Excel Analytics", "Advanced Formatting"],
-                link: "https://github.com/Ariful579/Data-Analysis-with-Excel",
-                iconClass: "fas fa-hand-holding-usd text-teal-500",
-                bgClass: "bg-teal-50"
-            },
-            {
-                type: "data-science",
-                category: "Data Science",
-                title: "Gold Price Prediction System",
-                description: "Developed and tuned an advanced multi-variable Random Forest Regressor framework to calculate global asset valuations, attaining a production R² metric of 0.92.",
-                tags: ["Scikit-Learn", "Random Forest", "NumPy"],
-                link: "https://github.com/Ariful579/Gold-Price-Prediction-Using-Random-Forest-Regressor",
-                iconClass: "fas fa-coins text-yellow-500",
-                bgClass: "bg-yellow-50"
-            },
-            {
-                type: "data-science",
-                category: "Data Science",
-                title: "Sonar Rock vs. Mine Signal Classification",
-                description: "Constructed Deep Learning binary neural layers to parse high-frequency acoustic data vectors with an 85% predictive accuracy threshold in classifying geological artifacts.",
-                tags: ["TensorFlow", "Keras ANN", "Signal Analysis"],
-                link: "https://github.com/Ariful579/Sonar-Rock-vs-Mine-Prediction",
-                iconClass: "fas fa-wave-square text-cyan-500",
-                bgClass: "bg-cyan-50"
-            },
-            {
-                type: "data-science",
-                category: "Data Science",
-                title: "Deep Learning ANN Classification Framework",
-                description: "Engineered scalable Artificial Neural Network structural nodes custom-optimized to execute deep categorical classification models over non-linear engineering feature sets.",
-                tags: ["TensorFlow", "Deep Learning", "Matplotlib"],
-                link: "https://github.com/Ariful579/ANN-Classification-Project",
-                iconClass: "fas fa-brain text-emerald-500",
-                bgClass: "bg-emerald-50"
-            },
-            {
-                type: "data-science",
-                category: "Data Science",
-                title: "Diabetes Clinical Risk Model",
-                description: "Constructed diagnostic risk pipelines utilizing Support Vector Machine (SVM) kernels to parse medical records (Glucose, BMI profiles) into serialized binary risk forecasts via Joblib.",
-                tags: ["Scikit-Learn", "SVM", "Model Serialization"],
-                link: "https://github.com/Ariful579/diabetes_prediction",
-                iconClass: "fas fa-heartbeat text-pink-500",
-                bgClass: "bg-pink-50"
-            },
-            {
-                type: "data-science",
-                category: "Data Science",
-                title: "Cardiovascular Disease Pipeline",
-                description: "Deployed automated classification routines tracking critical clinical factors (cholesterol metrics, blood pressure anomalies) to identify patient heart failure probability thresholds.",
-                tags: ["Logistic Regression", "Seaborn", "EDA"],
-                link: "https://github.com/Ariful579/Heart_disease_prediction",
-                iconClass: "fas fa-clipboard-check text-rose-500",
-                bgClass: "bg-rose-50"
-            },
-            {
-                type: "data-science",
-                category: "Data Science",
-                title: "Advanced Feature Engineering Engine",
-                description: "Built modular pre-processing pipelines automating missing-value transformations, normalization scales, targeted encoding blocks, and statistical outlier adjustments.",
-                tags: ["Feature Engineering", "Data Cleaning"],
-                link: "https://github.com/Ariful579/Feature-Engineering-Project",
-                iconClass: "fas fa-tools text-orange-500",
-                bgClass: "bg-orange-50"
-            },
-            {
-                type: "data-science",
-                category: "Data Science",
-                title: "Practical Machine Learning Pipelines",
-                description: "Engineered scalable, production-grade template architectures linking unstructured data ingestion nodes directly through hyperparameters, training passes, and validation arrays.",
-                tags: ["ML Workflows", "Joblib Production"],
-                link: "https://github.com/Ariful579/Machine-learning-pipelines-practical",
-                iconClass: "fas fa-cogs text-sky-500",
-                bgClass: "bg-sky-50"
-            }
-        ];
-
-        // Rendering Routine with Core Filter Automation
-        function filterProjects(category) {
-            const projectsGrid = document.getElementById('projects-grid');
-            projectsGrid.innerHTML = ''; // Reset UI view
-            
-            // Manage Active Filter Visual States
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.className = "filter-btn bg-white text-gray-600 border border-gray-200 px-5 py-2 rounded-full font-medium hover:bg-gray-50 transition shadow-sm";
-            });
-            const activeBtn = document.getElementById(`btn-${category}`);
-            if (activeBtn) {
-                activeBtn.className = "filter-btn bg-blue-600 text-white px-5 py-2 rounded-full font-medium transition shadow-sm";
-            }
-
-            // Route subset filtering logic
-            const targets = category === 'all' ? myProjects : myProjects.filter(p => p.type === category);
-
-            // Output generated DOM layout blocks
-            targets.forEach(project => {
-                const tagElements = project.tags.map(tag => 
-                    `<span class="bg-gray-100 text-gray-700 px-2.5 py-1 rounded text-xs font-semibold">${tag}</span>`
-                ).join('');
-
-                const cardHTML = `
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col justify-between transform hover:-translate-y-1">
-                        <div>
-                            <div class="h-40 ${project.bgClass} flex items-center justify-center border-b border-gray-50">
-                                <i class="${project.iconClass} text-5xl"></i>
-                            </div>
-                            <div class="p-5 pb-2">
-                                <span class="text-xs font-bold uppercase tracking-wider ${project.type === 'analysis' ? 'text-blue-600' : 'text-emerald-600'}">${project.category}</span>
-                                <h4 class="text-lg font-bold mt-1 mb-2 text-gray-900">${project.title}</h4>
-                                <p class="text-gray-600 mb-4 text-xs leading-relaxed">${project.description}</p>
-                            </div>
-                        </div>
-                        <div class="p-5 pt-0">
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                ${tagElements}
-                            </div>
-                            <a href="${project.link}" target="_blank" class="text-xs font-bold text-blue-600 hover:text-blue-800 inline-flex items-center gap-1 group">
-                                Source Code <span class="transform group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                            </a>
-                        </div>
-                    </div>
-                `;
-                projectsGrid.innerHTML += cardHTML;
-            });
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'flex';
         }
 
-        // Initialize runtime target view instantly on execution
-        document.addEventListener('DOMContentLoaded', () => {
-            filterProjects('all');
-        });
-    </script>
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
 
+        // Close modal if user clicks anywhere outside of the form card box
+        window.onclick = function(event) {
+            let modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
