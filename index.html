@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ariful Mondal | Portfolio</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
             --text-muted: #94a3b8;
             --accent: #38bdf8;
             --accent-glow: rgba(56, 189, 248, 0.3);
-            --nav-bg: rgba(2, 6, 23, 0.9);
+            --nav-bg: rgba(2, 6, 23, 0.95);
         }
 
         * {
@@ -26,22 +26,24 @@
             scroll-behavior: smooth;
         }
 
-        body {
+        html, body {
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Critical for mobile */
+            width: 100%;
         }
 
         .bg-blur {
             position: fixed;
-            width: 300px;
-            height: 300px;
+            width: 250px;
+            height: 250px;
             background: var(--accent);
-            filter: blur(150px);
+            filter: blur(120px);
             opacity: 0.1;
             z-index: -1;
             border-radius: 50%;
+            pointer-events: none;
         }
 
         nav {
@@ -57,10 +59,10 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .nav-links { display: flex; gap: 2rem; }
+        .nav-links { display: flex; gap: 1.5rem; }
         .nav-links a { 
             text-decoration: none; color: var(--text-muted); 
-            font-size: 0.9rem; transition: 0.3s; font-weight: 500;
+            font-size: 0.85rem; transition: 0.3s; font-weight: 500;
             cursor: pointer;
         }
         .nav-links a:hover { color: var(--accent); }
@@ -68,7 +70,7 @@
         header {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 8rem 2rem 2rem;
+            padding: 8rem 1rem 3rem;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -76,18 +78,18 @@
         }
 
         .profile-img {
-            width: 180px;
-            height: 180px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             border: 4px solid var(--accent);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             object-fit: cover;
-            box-shadow: 0 0 30px var(--accent-glow);
+            box-shadow: 0 0 25px var(--accent-glow);
             background-color: #1e293b;
         }
 
         h1 {
-            font-size: clamp(2.2rem, 8vw, 3.5rem);
+            font-size: clamp(1.8rem, 8vw, 3.5rem);
             margin-bottom: 0.5rem;
             font-weight: 800;
             background: linear-gradient(to right, #fff, var(--accent));
@@ -96,84 +98,272 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(0.9rem, 4vw, 1.2rem);
+            font-size: clamp(0.85rem, 3vw, 1.1rem);
             color: var(--accent);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             font-weight: 500;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
-        main { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+        main { max-width: 1100px; margin: 0 auto; padding: 0 1.2rem; }
 
-        section { margin-bottom: 6rem; }
+        section { margin-bottom: 4rem; width: 100%; }
 
         h2 {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             color: var(--accent);
         }
 
         .about-card {
             background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 20px;
+            padding: 1.5rem;
+            border-radius: 15px;
             border: 1px solid rgba(255,255,255,0.05);
             backdrop-filter: blur(10px);
-            margin-bottom: 4rem;
             text-align: left;
         }
         .about-card p {
             color: var(--text-muted);
-            font-size: 1.05rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
         }
 
         .project-group-title {
-            font-size: 1.1rem;
-            margin: 2.5rem 0 1.5rem;
+            font-size: 0.9rem;
+            margin: 2rem 0 1rem;
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 1px;
             border-left: 4px solid var(--accent);
-            padding-left: 15px;
+            padding-left: 12px;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.2rem;
+            width: 100%;
         }
 
         .project-card {
             background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 20px;
+            padding: 1.5rem;
+            border-radius: 15px;
             border: 1px solid rgba(255,255,255,0.05);
             transition: 0.3s;
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(10px);
+            height: 100%;
         }
 
         .project-card:hover {
-            transform: translateY(-8px);
             border-color: var(--accent);
             background: rgba(30, 41, 59, 0.8);
         }
 
-        .project-card h3 { font-size: 1.2rem; margin-bottom: 1rem; color: #fff; }
-        .project-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
+        .project-card h3 { font-size: 1.1rem; margin-bottom: 0.8rem; color: #fff; }
+        .project-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; flex-grow: 1; }
 
         .tech-tag {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             background: rgba(56, 189, 248, 0.1);
             color: var(--accent);
-            padding: 4px 10px;
+            padding: 3px 8px;
             border-radius: 4px;
             font-weight: 700;
-            margin
+            margin-right: 4px;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        .project-links { margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .project-links a { color: var(--accent); text-decoration: none; font-size: 0.8rem; font-weight: 600; }
+
+        /* Modal */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 6, 23, 0.98); z-index: 2000;
+            justify-content: center; align-items: center; padding: 1rem;
+        }
+        .modal-content {
+            background: #1e293b; padding: 1.5rem; border-radius: 15px; width: 100%; max-width: 400px;
+            position: relative; border: 1px solid var(--accent); text-align: center;
+        }
+
+        .contact-detail-card {
+            background: #0f172a; padding: 1rem; border-radius: 10px; border: 1px solid #334155;
+            margin-bottom: 0.8rem; text-align: left; display: flex; align-items: center; gap: 12px; position: relative;
+        }
+        
+        .copy-btn {
+            background: var(--accent); color: #020617; border: none; padding: 4px 8px;
+            border-radius: 4px; font-size: 0.65rem; font-weight: 800; cursor: pointer;
+            position: absolute; right: 10px;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem; border-radius: 50px; text-decoration: none;
+            font-weight: 700; cursor: pointer; transition: 0.3s; border: none;
+            display: inline-block; font-size: 0.85rem; margin: 5px;
+        }
+        .btn-primary { background-color: var(--accent); color: #020617; }
+        .btn-secondary { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+
+        /* MOBILE OVERRIDES */
+        @media (max-width: 600px) {
+            .nav-links { display: none; } /* Hide text links for space */
+            .projects-grid { grid-template-columns: 1fr; }
+            header { padding-top: 6rem; }
+            .btn { width: 100%; margin: 5px 0; text-align: center; }
+            .profile-img { width: 130px; height: 130px; }
+        }
+
+        footer { text-align: center; padding: 3rem 1rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body>
+
+    <div class="bg-blur" style="top: 10%; left: 5%;"></div>
+
+    <nav>
+        <div style="font-weight: 800; font-size: 1rem; color: var(--accent);">ARIFUL MONDAL.</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#featured">Featured</a>
+            <a href="#all-projects">Projects</a>
+            <a onclick="document.getElementById('contactModal').style.display = 'flex'">Contact</a>
+        </div>
+    </nav>
+
+    <header>
+        <img src="Myphoto.png" alt="Ariful Mondal" class="profile-img">
+        <h1>Ariful Mondal</h1>
+        <p class="hero-subtitle">Data Analysis | Data Science | ML</p>
+        <div style="width: 100%; max-width: 350px;">
+            <a onclick="document.getElementById('contactModal').style.display = 'flex'" class="btn btn-primary">Let's Talk</a>
+            <a href="#featured" class="btn btn-secondary">View Work</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ABOUT -->
+        <section id="about">
+            <h2><i class="fas fa-user-astronaut"></i> About Me</h2>
+            <div class="about-card">
+                <p>Hi, I'm <strong>Ariful Mondal</strong>. I focus on converting messy enterprise numbers into interactive dashboards and clear operational strategies.</p>
+                <p>I specialize in building complete SQL and Power BI pipelines, transforming raw business data into structured intelligence that guides executive decisions.</p>
+            </div>
+        </section>
+
+        <!-- FEATURED -->
+        <section id="featured">
+            <h2><i class="fas fa-star"></i> Featured Projects</h2>
+            
+            <div class="project-group-title">Data Analytics</div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Customer Shopping Behavior</h3>
+                    <p>Designed Python-to-MySQL pipeline for 3,900 accounts ($233K revenue). Proved 76% revenue from Clothing.</p>
+                    <div><span class="tech-tag">Power BI</span><span class="tech-tag">MySQL</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Customer-Shopping-Behavior-Analysis" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Telecom Churn Analysis</h3>
+                    <p>Interactive dashboard tracking 26.53% churn. Isolated $2.86M revenue leakage using automated slicers.</p>
+                    <div><span class="tech-tag">Excel</span><span class="tech-tag">Slicers</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Telecom-Customer-Churn-Analysis-Dashboard-Report" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Inventory & Supply Chain</h3>
+                    <p>Leveraged 2+ years of SC experience to propose strategies reducing stockouts by 12%.</p>
+                    <div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Inventory-and-Supply-Chain-Project" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>HR Analytics Dashboard</h3>
+                    <p>Identified critical risk factors causing employee attrition through advanced Power BI visuals.</p>
+                    <div><span class="tech-tag">Power BI</span><span class="tech-tag">DAX</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/HR-Analysis-with-Power-BI" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Sales & Revenue Analytics</h3>
+                    <p>Built automated reporting pipelines via Power Query to uncover seasonal macro revenue trends.</p>
+                    <div><span class="tech-tag">Excel</span><span class="tech-tag">Power Query</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Data-Analysis-with-Excel" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+            </div>
+
+            <div class="project-group-title">Data Science & DL</div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Gold Price Prediction</h3>
+                    <p>High-accuracy forecasting system achieving an R² score of 0.92 using Random Forest Regressor.</p>
+                    <div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">ML</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Gold-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Sonar Rock vs Mine</h3>
+                    <p>Binary classification of acoustic signals with 85% accuracy using Artificial Neural Networks (ANN).</p>
+                    <div><span class="tech-tag">TensorFlow</span><span class="tech-tag">ANN</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Sonar-Rock-vs-Mine-Prediction" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Diabetes Prediction</h3>
+                    <p>Predictive modeling using clinical indicators like Glucose and BMI to identify diabetic risks.</p>
+                    <div><span class="tech-tag">SVM</span><span class="tech-tag">NumPy</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/diabetes_prediction" target="_blank">Repo <i class="fab fa-github"></i></a></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FULL LIST (Exactly 13 Projects) -->
+        <section id="all-projects">
+            <h2><i class="fas fa-folder-open"></i> Full Projects Showcase</h2>
+            <div class="projects-grid">
+                <div class="project-card"><h3>1. Customer Shopping Behavior</h3><p>Architecture to analyze consumer purchasing trends across 3,900 accounts ($233K total revenue).</p><div><span class="tech-tag">Python</span><span class="tech-tag">MySQL</span></div><div class="project-links"><a href="https://github.com/Ariful579/Customer-Shopping-Behavior-Analysis">Repo</a></div></div>
+                
+                <div class="project-card"><h3>2. Telecom Customer Churn</h3><p>Corporate analytical app tracking a 26.53% churn rate and isolated $2.86M absolute leakage.</p><div><span class="tech-tag">Excel</span><span class="tech-tag">Slicers</span></div><div class="project-links"><a href="https://github.com/Ariful579/Telecom-Customer-Churn-Analysis-Dashboard-Report">Repo</a></div></div>
+                
+                <div class="project-card"><h3>3. Inventory & Supply Chain</h3><p>Proposed data-driven strategies to reduce stockouts by 12% using historic portfolio operational data.</p><div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span></div><div class="project-links"><a href="https://github.com/Ariful579/Inventory-and-Supply-Chain-Project">Repo</a></div></div>
+                
+                <div class="project-card"><h3>4. HR Analytics Dashboard</h3><p>Identified 3 critical enterprise operational risk factors contributing to employee attrition metrics.</p><div><span class="tech-tag">Power BI</span><span class="tech-tag">Excel</span></div><div class="project-links"><a href="https://github.com/Ariful579/HR-Analysis-with-Power-BI">Repo</a></div></div>
+                
+                <div class="project-card"><h3>5. Sales & Revenue Analytics</h3><p>Built automated corporate reporting pipelines via Power Query to uncover seasonal macro trends.</p><div><span class="tech-tag">Excel</span><span class="tech-tag">Power Query</span></div><div class="project-links"><a href="https://github.com/Ariful579/Data-Analysis-with-Excel">Repo</a></div></div>
+                
+                <div class="project-card"><h3>6. ServiceNow Leave Management</h3><p>Scoped app to orchestrate automated employee absence requests and manage approval workflows.</p><div><span class="tech-tag">ServiceNow</span><span class="tech-tag">JS</span></div><div class="project-links"><a href="https://github.com/Ariful579/ServiceNow-Leave-Management">Repo</a></div></div>
+                
+                <div class="project-card"><h3>7. Gold Price Prediction</h3><p>High-accuracy forecasting engine using Random Forest Regressor models (R² score of 0.92).</p><div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">ML</span></div><div class="project-links"><a href="https://github.com/Ariful579/Gold-Price-Prediction-Using-Random-Forest-Regressor">Repo</a></div></div>
+                
+                <div class="project-card"><h3>8. Sonar Rock vs. Mine</h3><p>Achieved 85% accuracy in high-frequency acoustic signal categorization for target objects.</p><div><span class="tech-tag">TensorFlow</span><span class="tech-tag">ANN</span></div><div class="project-links"><a href="https://github.com/Ariful579/Sonar-Rock-vs-Mine-Prediction">Repo</a></div></div>
+                
+                <div class="project-card"><h3>9. Deep Learning ANN</h3><p>Engineered an ANN architecture optimized for multi-feature binary classification challenges.</p><div><span class="tech-tag">Keras</span><span class="tech-tag">Python</span></div><div class="project-links"><a href="https://github.com/Ariful579/ANN-Classification-Project">Repo</a></div></div>
+                
+                <div class="project-card"><h3>10. Diabetes Prediction</h3><p>Predictive modeling pipeline using clinical indicators to identify diabetic risk factors.</p><div><span class="tech-tag">SVM</span><span class="tech-tag">Joblib</span></div><div class="project-links"><a href="https://github.com/Ariful579/diabetes_prediction">Repo</a></div></div>
+                
+                <div class="project-card"><h3>11. Heart Disease Prediction</h3><p>Developed binary classification using clinical features like cholesterol to assess cardiovascular risk.</p><div><span class="tech-tag">Logistic Regression</span></div><div class="project-links"><a href="https://github.com/Ariful579/Heart_disease_prediction">Repo</a></div></div>
+                
+                <div class="project-card"><h3>12. Feature Engineering</h3><p>Implementation of data preprocessing, feature scaling, and encoding mechanics.</p><div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span></div><div class="project-links"><a href="https://github.com/Ariful579/Feature-Engineering-Project">Repo</a></div></div>
+                
+                <div class="project-card"><h3>13. Machine Learning Pipelines</h3><p>End-to-end deployment workflows connecting raw data ingestion to model tuning.</p><div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Python</span></div><div class="project-links"><a href="https://github.com/Ariful579/Machine-learning-pipelines-practical">Repo</a></div></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span onclick="document.getElementById('contactModal').style.display = 'none'" style="position: absolute; top: 10px; right: 15px; color: var(--text-muted); cursor: pointer;"><i class="fas fa-times"></i></span>
+            <h3 style="margin-bottom: 1.5rem;">Contact Me</h3>
+            <div class="contact-detail-card">
+                <i class="fas fa-user" style="color:var(--accent)"></i>
+                <div><p style="font-size:0.6rem">Name</p><h4>Ariful Mondal</h4></div>
+            </div>
+            <div class="contact-detail-card">
+                <i class="fas fa-envelope" style="color:var(--accent)"></i>
+                <div><p
