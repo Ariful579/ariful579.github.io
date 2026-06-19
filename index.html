@@ -366,4 +366,38 @@
             </div>
             <div class="contact-detail-card">
                 <i class="fas fa-envelope" style="color:var(--accent)"></i>
-                <div><p
+                <div><p style="font-size:0.6rem">Email</p><h4 id="emailId" style="font-size:0.8rem">arifulmondal14082001@outlook.com</h4></div>
+                <button onclick="copyMail()" id="cpBtn" class="copy-btn">Copy</button>
+            </div>
+            <a href="mailto:arifulmondal14082001@outlook.com" class="btn btn-primary" style="width:100%">Send Email</a>
+            <div style="margin-top:1.5rem; display:flex; justify-content:center; gap:20px">
+                <a href="https://github.com/Ariful579" target="_blank" style="color:var(--text-muted); font-size:1.5rem"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349/" target="_blank" style="color:var(--accent); font-size:1.5rem"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div style="margin-bottom: 1rem;">
+            <a href="https://github.com/Ariful579" target="_blank" style="color: var(--text-muted); margin: 0 10px; font-size: 1.3rem;"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349/" target="_blank" style="color: var(--text-muted); margin: 0 10px; font-size: 1.3rem;"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.7rem;">&copy; 2026 Ariful Mondal</p>
+    </footer>
+
+    <script>
+        function copyMail() {
+            const email = document.getElementById('emailId').innerText;
+            const btn = document.getElementById('cpBtn');
+            navigator.clipboard.writeText(email).then(() => {
+                btn.innerText = "Copied!";
+                btn.style.background = "#22c55e";
+                setTimeout(() => { btn.innerText = "Copy"; btn.style.background = "var(--accent)"; }, 2000);
+            });
+        }
+        window.onclick = function(e) { 
+            if(e.target == document.getElementById('contactModal')) document.getElementById('contactModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
