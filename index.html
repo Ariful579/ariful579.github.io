@@ -241,7 +241,7 @@
     <header>
         <img src="Myphoto.png" alt="Ariful Mondal" class="profile-img">
         <h1>Ariful Mondal</h1>
-        <p class="hero-subtitle">Data Analysis | Data Science | ML Engineer</p>
+        <p class="hero-subtitle">Data Analysis | Data Science | ML</p>
         <div>
             <a onclick="document.getElementById('contactModal').style.display='flex'" class="btn btn-primary">Let's Talk</a>
             <a href="#featured" class="btn btn-secondary">Featured Work</a>
@@ -249,11 +249,150 @@
     </header>
 
     <main>
-        <!-- ABOUT -->
+        <!-- ABOUT ME -->
         <section id="about">
             <h2><i class="fas fa-user-astronaut"></i> About Me</h2>
             <div class="about-card">
                 <p>Hi, I'm Ariful Mondal. I am a data professional focused on converting messy enterprise numbers into interactive dashboards, automated intelligence, and clear operational strategies. My approach bridges deep mathematical analysis with real-world execution.</p>
-                <p>I specialize in building complete descriptive pipelines—transforming raw business data into structured SQL databases and designing dynamic Power BI reports. Beyond BI, I actively engineer high-performance machine learning models using Python, TensorFlow, and Scikit-learn.</p>
+                <p>I specialize in building descriptive pipelines—transforming raw data into structured SQL databases and Power BI reports. Beyond analysis, I actively engineer machine learning models using Python and Scikit-learn to solve classification and regression challenges.</p>
             </div>
-        </section
+        </section>
+
+        <!-- FEATURED PROJECTS (Original State) -->
+        <section id="featured">
+            <h2><i class="fas fa-star"></i> Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Customer Shopping Behavior</h3>
+                    <p>Designed Python-to-MySQL pipeline for 3,900 accounts ($233K revenue). Proved 76% revenue from Clothing & Accessories.</p>
+                    <div><span class="tech-tag">Power BI</span><span class="tech-tag">MySQL</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Customer-Shopping-Behavior-Analysis" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Telecom Churn Analysis</h3>
+                    <p>Interactive dashboard tracking 26.53% churn. Isolated $2.86M revenue leakage using automated slicers.</p>
+                    <div><span class="tech-tag">Excel</span><span class="tech-tag">Slicers</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Telecom-Customer-Churn-Analysis-Dashboard-Report" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
+                </div>
+                <div class="project-card">
+                    <h3>Gold Price Prediction</h3>
+                    <p>High-accuracy forecasting system achieving an R² score of 0.92 using Random Forest Regressor.</p>
+                    <div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">ML</span></div>
+                    <div class="project-links"><a href="https://github.com/Ariful579/Gold-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GAME LAB (In its original location) -->
+        <section id="game-lab">
+            <h2><i class="fas fa-gamepad"></i> Interactive Lab: Data Runner</h2>
+            <div id="game-container">
+                <div class="game-hud">
+                    score <span id="sEl">0</span>
+                    best <span id="bEl">0</span>
+                    level <span id="lEl">1</span>
+                </div>
+                <canvas id="c" width="680" height="170"></canvas>
+                <p id="game-sub">dodge the noise. collect the signal. (SPACE/TAP to start)</p>
+                <button id="runBtn" class="btn btn-primary" style="display:none; margin-top:10px">Run Again</button>
+            </div>
+        </section>
+
+        <!-- FULL SHOWCASE (ALL 13 PROJECTS) -->
+        <section id="all-projects">
+            <h2><i class="fas fa-folder-open"></i> Full Projects Showcase</h2>
+            <div class="projects-grid">
+                <div class="project-card"><h3>1. Customer Shopping Behavior</h3><p>Architecture to analyze consumer trends across 3,900 accounts and $233K revenue.</p><div><span class="tech-tag">Python</span><span class="tech-tag">MySQL</span></div><div class="project-links"><a href="https://github.com/Ariful579/Customer-Shopping-Behavior-Analysis">Repo</a></div></div>
+                <div class="project-card"><h3>2. Telecom Customer Churn</h3><p>Analytical app tracking a 26.53% churn rate and isolated $2.86M revenue leakage.</p><div><span class="tech-tag">Excel</span><span class="tech-tag">Slicers</span></div><div class="project-links"><a href="https://github.com/Ariful579/Telecom-Customer-Churn-Analysis-Dashboard-Report">Repo</a></div></div>
+                <div class="project-card"><h3>3. Inventory & Supply Chain</h3><p>Strategies to reduce stockouts by 12% leveraging historic portfolio data.</p><div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span></div><div class="project-links"><a href="https://github.com/Ariful579/Inventory-and-Supply-Chain-Project">Repo</a></div></div>
+                <div class="project-card"><h3>4. HR Analytics Dashboard</h3><p>Identified 3 critical operational risk factors contributing to employee attrition.</p><div><span class="tech-tag">Power BI</span><span class="tech-tag">Excel</span></div><div class="project-links"><a href="https://github.com/Ariful579/HR-Analysis-with-Power-BI">Repo</a></div></div>
+                <div class="project-card"><h3>5. Sales & Revenue Analytics</h3><p>Built automated corporate reporting pipelines via Power Query to uncover trends.</p><div><span class="tech-tag">Excel</span><span class="tech-tag">Power Query</span></div><div class="project-links"><a href="https://github.com/Ariful579/Data-Analysis-with-Excel">Repo</a></div></div>
+                <div class="project-card"><h3>6. ServiceNow Leave Mgmt</h3><p>Scoped application to orchestrate automated employee absence requests.</p><div><span class="tech-tag">ServiceNow</span><span class="tech-tag">JS</span></div><div class="project-links"><a href="https://github.com/Ariful579/ServiceNow-Leave-Management">Repo</a></div></div>
+                <div class="project-card"><h3>7. Gold Price Prediction</h3><p>Forecasting engine using Random Forest Regressor models (R² score: 0.92).</p><div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Python</span></div><div class="project-links"><a href="https://github.com/Ariful579/Gold-Price-Prediction-Using-Random-Forest-Regressor">Repo</a></div></div>
+                <div class="project-card"><h3>8. Sonar Rock vs. Mine</h3><p>Achieved 85% accuracy in high-frequency acoustic signal categorization.</p><div><span class="tech-tag">TensorFlow</span><span class="tech-tag">ANN</span></div><div class="project-links"><a href="https://github.com/Ariful579/Sonar-Rock-vs-Mine-Prediction">Repo</a></div></div>
+                <div class="project-card"><h3>9. Deep Learning ANN</h3><p>Engineered an ANN architecture optimized for binary classification.</p><div><span class="tech-tag">Keras</span><span class="tech-tag">Python</span></div><div class="project-links"><a href="https://github.com/Ariful579/ANN-Classification-Project">Repo</a></div></div>
+                <div class="project-card"><h3>10. Diabetes Prediction</h3><p>Predictive modeling pipeline using medical indicators to identify risk factors.</p><div><span class="tech-tag">SVM</span><span class="tech-tag">Joblib</span></div><div class="project-links"><a href="https://github.com/Ariful579/diabetes_prediction">Repo</a></div></div>
+                <div class="project-card"><h3>11. Heart Disease Prediction</h3><p>Developed binary classification using features like cholesterol to assess risk.</p><div><span class="tech-tag">Logistic Regression</span></div><div class="project-links"><a href="https://github.com/Ariful579/Heart_disease_prediction">Repo</a></div></div>
+                <div class="project-card"><h3>12. Feature Engineering</h3><p>Implementation of preprocessing pipelines, scaling, and encoding mechanics.</p><div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span></div><div class="project-links"><a href="https://github.com/Ariful579/Feature-Engineering-Project">Repo</a></div></div>
+                <div class="project-card"><h3>13. Machine Learning Pipelines</h3><p>Practical workflows connecting raw ingestion to evaluation cycles.</p><div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Python</span></div><div class="project-links"><a href="https://github.com/Ariful579/Machine-learning-pipelines-practical">Repo</a></div></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CONTACT MODAL -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span onclick="document.getElementById('contactModal').style.display='none'" style="position: absolute; top: 15px; right: 20px; color: var(--text-muted); cursor: pointer;"><i class="fas fa-times"></i></span>
+            <h3 style="margin-bottom: 1.5rem;">Contact Information</h3>
+            <div class="contact-detail-card">
+                <i class="fas fa-envelope" style="color:var(--accent)"></i>
+                <div><p style="font-size:0.6rem">Email Address</p><h4 id="emailId" style="font-size:0.8rem">arifulmondal14082001@outlook.com</h4></div>
+                <button onclick="copyMail()" id="cpBtn" class="copy-btn">Copy</button>
+            </div>
+            <a href="mailto:arifulmondal14082001@outlook.com" class="btn btn-primary" style="width:100%">Open Mail App</a>
+            <div style="margin-top:1.5rem; display:flex; justify-content:center; gap:25px">
+                <a href="https://github.com/Ariful579" target="_blank" style="color:var(--text-muted); font-size:1.5rem"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349/" target="_blank" style="color:var(--accent); font-size:1.5rem"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p style="color: var(--text-muted); font-size: 0.7rem;">&copy; 2026 Ariful Mondal | Data Specialist</p>
+    </footer>
+
+    <script>
+        function copyMail() {
+            const email = document.getElementById('emailId').innerText;
+            const btn = document.getElementById('cpBtn');
+            navigator.clipboard.writeText(email).then(() => {
+                btn.innerText = "Copied!";
+                btn.style.background = "#22c55e";
+                setTimeout(() => { btn.innerText = "Copy"; btn.style.background = "var(--accent)"; }, 2000);
+            });
+        }
+
+        /* --- GAME LOGIC --- */
+        const c = document.getElementById('c'), ctx = c.getContext('2d');
+        const W = 680, H = 170, GROUND = 128, G = 0.52, JUMP = -11.5;
+        const sEl = document.getElementById('sEl'), bEl = document.getElementById('bEl'), lEl = document.getElementById('lEl');
+        const sub = document.getElementById('game-sub'), runBtn = document.getElementById('runBtn');
+        let mode = 'idle', score = 0, best = 0, frame = 0, spd = 3.2, lvl = 1, obs = [], gems = [];
+        let nextObs = 100, nextGem = 70;
+        const P = { x: 90, y: GROUND, w: 22, h: 30, vy: 0, grounded: true, jumps: 0 };
+        const OBS = [{ label: 'null', w: 30, h: 26, fill: '#1e293b', stroke: '#38bdf8' }, { label: 'NaN', w: 35, h: 24, fill: '#1e293b', stroke: '#ef4444' }];
+        const GEMS = [{ label: 'r²', fill: '#22c55e' }, { label: '+10', fill: '#8b5cf6' }];
+
+        function jump() {
+            if (mode === 'idle' || mode === 'dead') { start(); return; }
+            if (P.jumps < 2) { P.vy = JUMP; P.grounded = false; P.jumps++; }
+        }
+        function start() { mode = 'playing'; score = 0; frame = 0; spd = 3.2; lvl = 1; P.y = GROUND; obs = []; gems = []; runBtn.style.display = 'none'; }
+        function die() { mode = 'dead'; if (score > best) best = score; bEl.textContent = best; runBtn.style.display = 'inline-block'; }
+
+        function update() {
+            if (mode !== 'playing') return;
+            frame++; score++; lvl = Math.floor(score / 500) + 1; spd = 3.2 + lvl * 0.45;
+            sEl.textContent = score; lEl.textContent = lvl;
+            P.vy += G; P.y += P.vy;
+            if (P.y >= GROUND) { P.y = GROUND; P.vy = 0; P.grounded = true; P.jumps = 0; }
+            if (--nextObs <= 0) { const t = OBS[Math.floor(Math.random()*OBS.length)]; obs.push({...t, x: W+20, y: GROUND+P.h-t.h, sh: t.h}); nextObs = 60+Math.random()*40; }
+            if (--nextGem <= 0) { const g = GEMS[Math.floor(Math.random()*GEMS.length)]; gems.push({...g, x: W+20, y: GROUND-20-Math.random()*40, r: 13}); nextGem = 80+Math.random()*80; }
+            obs.forEach((o, i) => { o.x -= spd; if (o.x < P.x + P.w - 5 && o.x + o.w > P.x + 5 && P.y + P.h > o.y) die(); if (o.x + o.w < 0) obs.splice(i, 1); });
+            gems.forEach((g, i) => { g.x -= spd; const dx = (P.x+P.w/2)-(g.x+g.r), dy = (P.y+P.h/2)-(g.y+g.r); if (Math.sqrt(dx*dx+dy*dy)<25) { score+=50; gems.splice(i,1); } });
+        }
+
+        function draw() {
+            ctx.clearRect(0,0,W,H);
+            ctx.strokeStyle = '#1e293b'; ctx.beginPath(); ctx.moveTo(0, GROUND+P.h); ctx.lineTo(W, GROUND+P.h); ctx.stroke();
+            ctx.fillStyle = 'var(--accent)'; ctx.beginPath(); ctx.roundRect(P.x, P.y, P.w, P.h, 5); ctx.fill();
+            obs.forEach(o => { ctx.fillStyle = o.fill; ctx.strokeStyle = o.stroke; ctx.beginPath(); ctx.roundRect(o.x, o.y, o.w, o.sh, 4); ctx.fill(); ctx.stroke(); });
+            gems.forEach(g => { ctx.fillStyle = g.fill; ctx.beginPath(); ctx.arc(g.x+g.r, g.y+g.r, g.r, 0, Math.PI*2); ctx.fill(); });
+            if (mode === 'idle') { ctx.fillStyle = 'rgba(2,6,23,0.8)'; ctx.fillRect(0,0,W,H); ctx.fillStyle = '#fff'; ctx.textAlign='center'; ctx.fillText('TAP TO START', W/2, H/2); }
+            update(); requestAnimationFrame(draw);
+        }
+        c.addEventListener('mousedown', jump); document.addEventListener('keydown', e => e.code==='Space' && jump());
+        runBtn.addEventListener('click', start); draw();
+    </script>
+</body>
+</html>
