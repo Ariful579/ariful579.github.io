@@ -406,7 +406,7 @@
             </div>
             <div class="contact-detail-card">
                 <i class="fas fa-envelope" style="color:var(--accent)"></i>
-                <div><p style="font-size:0.6rem">Email Address</p><h4 id="emailId" style="font-size:0.8rem">arifulmondal14082001@outlook.com</h4></div>
+                <div><p style="font-size:0.6rem">Email Address</p><h4 id="emailId" style="font-size:0.8rem"></h4></div>
                 <button onclick="copyMail()" id="cpBtn" class="copy-btn">Copy</button>
             </div>
             <div class="contact-detail-card">
@@ -414,7 +414,7 @@
                 <div><p style="font-size:0.6rem">LinkedIn</p><h4 style="font-size:0.8rem">Ariful Mondal</h4></div>
                 <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349/" target="_blank" class="copy-btn" style="text-decoration:none; padding:4px 8px;">Visit</a>
             </div>
-            <a href="mailto:arifulmondal14082001@outlook.com" class="btn btn-primary" style="width:100%">Open Mail App</a>
+            <a id="mailtoBtn" href="#" class="btn btn-primary" style="width:100%">Open Mail App</a>
             <div style="margin-top:1.5rem; display:flex; justify-content:center; gap:25px">
                 <a href="https://github.com/Ariful579" target="_blank" style="color:var(--text-muted); font-size:1.5rem"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349/" target="_blank" style="color:var(--accent); font-size:1.5rem"><i class="fab fa-linkedin"></i></a>
@@ -431,9 +431,15 @@
     </footer>
 
     <script>
+        // --- EMAIL (obfuscated to block scrapers) ---
+        const _e = ['arifulmondal14082001', 'outlook', 'com'];
+        const _em = _e[0] + '@' + _e[1] + '.' + _e[2];
+        document.getElementById('emailId').textContent = _em;
+        document.getElementById('mailtoBtn').href = 'mailto:' + _em;
+
         // --- EMAIL COPY LOGIC ---
         function copyMail() {
-            const email = document.getElementById('emailId').innerText;
+            const email = _em;
             const btn = document.getElementById('cpBtn');
             navigator.clipboard.writeText(email).then(() => {
                 btn.innerText = "Copied!";
