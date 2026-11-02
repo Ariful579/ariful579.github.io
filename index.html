@@ -1,610 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Ariful Mondal | Portfolio </title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ariful Mondal | Data Analysis · Data Science · Artificial Intelligence</title>
+<meta name="description" content="Portfolio of Ariful Mondal: dashboards, ML pipelines and offline-first AI systems.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#020617;--bg2:#0b1224;--card:rgba(15,23,42,.65);--text:#f1f5f9;--muted:#94a3b8;--accent:#38bdf8;--accent2:#818cf8;--ok:#22c55e;--line:rgba(148,163,184,.14);--mono:'JetBrains Mono',ui-monospace,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+#bg{position:fixed;inset:0;z-index:-1}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:3000}
+nav{position:fixed;top:0;width:100%;z-index:1000;padding:.9rem 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(2,6,23,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{font-family:var(--mono);font-weight:700;color:var(--accent);text-decoration:none}
+.logo b{color:var(--muted);font-weight:400}
+.nav-links{display:flex;gap:1.6rem;align-items:center}
+.nav-links a{font-size:.85rem;color:var(--muted);text-decoration:none;cursor:pointer;transition:color .2s;position:relative}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent)}
+.burger{display:none;background:none;border:0;color:var(--text);font-size:1.3rem;cursor:pointer}
+.wrap{max-width:1150px;margin:0 auto;padding:0 1.5rem}
+section{padding:4.5rem 0}
+h2{font-size:1.8rem;font-weight:800;margin-bottom:.4rem}
+h2 i{color:var(--accent);margin-right:10px;font-size:1.3rem}
+.sub{color:var(--muted);margin-bottom:2rem;max-width:60ch}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:.8rem 1.6rem;border-radius:10px;font-weight:700;font-size:.9rem;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .2s,box-shadow .2s;font-family:inherit}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:#020617;box-shadow:0 0 0 0 var(--accent)}
+.btn-primary:hover{box-shadow:0 8px 30px rgba(56,189,248,.35)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn[aria-disabled=true]{opacity:.5;cursor:not-allowed}
+.btn[aria-disabled=true]:hover{transform:none;box-shadow:none}
 
-    <style>
-        :root {
-            --bg-color: #020617;
-            --card-bg: rgba(30, 41, 59, 0.5);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.3);
-            --nav-bg: rgba(2, 6, 23, 0.95);
-        }
+/* hero */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center;padding-top:7rem;padding-bottom:3rem}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.78rem;color:var(--muted);border:1px solid var(--line);padding:5px 12px;border-radius:99px;margin-bottom:1.4rem}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}100%{box-shadow:0 0 0 10px rgba(34,197,94,0)}}
+h1{font-size:clamp(2.4rem,7vw,4.4rem);line-height:1.05;font-weight:800;letter-spacing:-.03em}
+h1 span{background:linear-gradient(100deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.typed{font-family:var(--mono);font-size:clamp(1rem,2.4vw,1.35rem);color:var(--accent);margin:1.2rem 0 1.5rem;min-height:2em}
+.typed::after{content:"▌";margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{color:var(--muted);max-width:52ch;margin-bottom:2rem}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-side{position:relative;display:flex;justify-content:center}
+.photo{width:min(340px,80%);aspect-ratio:1;border-radius:28px;object-fit:cover;border:1px solid var(--line);box-shadow:0 0 60px rgba(56,189,248,.18);transition:transform .15s}
+.term{position:absolute;left:-6%;bottom:-6%;width:min(300px,78%);background:rgba(2,6,23,.92);border:1px solid var(--line);border-radius:12px;font-family:var(--mono);font-size:.72rem;box-shadow:0 20px 50px rgba(0,0,0,.5);animation:float 6s ease-in-out infinite}
+.term-bar{padding:7px 12px;border-bottom:1px solid var(--line);display:flex;gap:6px;align-items:center;color:var(--muted)}
+.term-bar i{width:9px;height:9px;border-radius:50%;background:#ef4444}.term-bar i:nth-child(2){background:#f59e0b}.term-bar i:nth-child(3){background:var(--ok)}
+.term pre{padding:12px;color:#cbd5e1;white-space:pre-wrap;min-height:110px}
+.k{color:var(--accent2)}.s{color:var(--ok)}.c{color:#64748b}
+@keyframes float{50%{transform:translateY(-10px)}}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.stat{background:var(--bg2);padding:1.6rem 1rem;text-align:center}
+.stat b{display:block;font-family:var(--mono);font-size:2rem;color:var(--accent)}
+.stat span{font-size:.8rem;color:var(--muted)}
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            width: 100%;
-        }
+.sk-h{font-size:1rem;font-weight:700;margin:1.8rem 0 .9rem;color:var(--text)}
+.sk-h:first-child{margin-top:0}.sk-h i{color:var(--accent);margin-right:8px}
+.skgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.skbox{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:1.1rem .6rem;min-height:98px;background:var(--card);border:1px solid var(--line);border-radius:14px;transition:transform .25s,border-color .25s,box-shadow .25s;cursor:default}
+.skbox i{font-size:1.4rem;color:var(--accent);transition:transform .3s}
+.skbox span{font-family:var(--mono);font-size:.76rem}
+.skbox:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 10px 28px rgba(56,189,248,.18)}
+.skbox:hover i{transform:scale(1.2) rotate(-6deg)}
+#skTip{position:fixed;z-index:1500;width:260px;background:#0f172a;border:1px solid var(--accent);border-radius:12px;padding:.8rem 1rem;font-size:.8rem;line-height:1.5;color:var(--muted);box-shadow:0 14px 40px rgba(0,0,0,.55);opacity:0;transform:translateY(6px) scale(.97);pointer-events:none;transition:opacity .18s,transform .18s}
+#skTip.show{opacity:1;transform:none}
+#skTip b{display:block;color:var(--accent);font-family:var(--mono);font-size:.78rem;margin-bottom:.3rem}
+.skbox.pin{border-color:var(--accent)}
+/* about */
+.about{display:grid;grid-template-columns:1.3fr .7fr;gap:2rem}
+.about p{color:var(--muted);margin-bottom:1.1rem}
+.skills{display:flex;flex-direction:column;gap:1rem}
+.skill label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.78rem;margin-bottom:5px}
+.bar{height:6px;background:var(--line);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:9px;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
 
-        .bg-blur {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            background: var(--accent);
-            filter: blur(150px);
-            opacity: 0.1;
-            z-index: -1;
-            border-radius: 50%;
-            pointer-events: none;
-        }
+/* filters + cards */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.6rem}
+.chip{font-family:var(--mono);font-size:.78rem;padding:7px 14px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;transition:.2s}
+.chip:hover{color:var(--text);border-color:var(--accent)}
+.chip.on{background:var(--accent);color:#020617;border-color:var(--accent);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.3rem}
+.card{--mx:50%;--my:50%;position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.4rem;display:flex;flex-direction:column;transform:perspective(900px) rotateX(var(--rx,0)) rotateY(var(--ry,0));transition:transform .15s ease-out,border-color .3s,opacity .35s;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(56,189,248,.14),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover{border-color:rgba(56,189,248,.5)}.card:hover::before{opacity:1}
+.card.hide{display:none}
+.card img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;border-radius:10px;border:1px solid var(--line);margin-bottom:1rem}
+.card h3{font-size:1.1rem;margin-bottom:.5rem}
+.card p{font-size:.88rem;color:var(--muted);flex:1;margin-bottom:1rem}
+.tag{display:inline-block;font-family:var(--mono);font-size:.68rem;background:rgba(56,189,248,.1);color:var(--accent);padding:3px 9px;border-radius:5px;margin:0 5px 5px 0}
+.card a.go{margin-top:.6rem;font-size:.85rem;font-weight:600;color:var(--accent);text-decoration:none}
+.card a.go:hover{text-decoration:underline}
+.kind{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-bottom:.4rem}
 
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            background: var(--nav-bg);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+/* civiccura */
+.civic{border:1px solid rgba(56,189,248,.35);border-radius:22px;padding:clamp(1.4rem,4vw,2.6rem);background:linear-gradient(160deg,rgba(56,189,248,.08),rgba(129,140,248,.05) 50%,transparent);position:relative;overflow:hidden}
+.badge{font-family:var(--mono);font-size:.72rem;color:var(--ok);border:1px solid rgba(34,197,94,.4);padding:3px 10px;border-radius:99px;display:inline-block;margin-bottom:1rem}
+.civic h3{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.02em}
+.civic .tagline{color:var(--accent);margin:.3rem 0 1.6rem}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-bottom:1.6rem}
+.cols h4{font-family:var(--mono);font-size:.8rem;color:var(--accent2);margin-bottom:.4rem}
+.cols p{color:var(--muted);font-size:.92rem}
+.compare{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.8rem}
+.compare div{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:1rem;text-align:center}
+.compare b{display:block;font-family:var(--mono);font-size:1.5rem;color:var(--accent)}
+.compare span{font-size:.75rem;color:var(--muted)}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:.8rem}
+.step{text-align:left;font-family:inherit;background:var(--bg2);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:1rem;cursor:pointer;transition:.3s;position:relative}
+.step i{font-size:1.2rem;color:var(--muted);margin-bottom:.5rem;display:block;transition:.3s}
+.step strong{font-size:.85rem}
+.step.on{border-color:var(--accent);box-shadow:0 0 25px rgba(56,189,248,.2);transform:translateY(-3px)}
+.step.on i{color:var(--accent)}
+.detail{min-height:3.2em;font-family:var(--mono);font-size:.8rem;color:var(--muted);border-left:2px solid var(--accent);padding:.2rem .9rem;margin-bottom:1.6rem}
+.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:1.2rem}
 
-        .nav-links { display: flex; gap: 1.5rem; }
-        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: 0.3s; font-weight: 500; cursor: pointer;}
-        .nav-links a:hover { color: var(--accent); }
+/* game */
+#game{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:18px;text-align:center}
+canvas#c{max-width:100%;height:auto;background:#020617;border-radius:10px;border:1px solid var(--line);touch-action:none}
+.hud{display:flex;justify-content:center;gap:28px;margin-bottom:10px;font-size:.78rem;color:var(--accent);font-family:var(--mono)}
+.hud span{color:#fff;font-size:1rem}
+#gsub{color:var(--muted);font-size:.8rem;margin-top:8px}
 
-        header {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 8rem 1.5rem 3rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+/* modal */
+.modal{display:none;position:fixed;inset:0;background:rgba(2,6,23,.92);backdrop-filter:blur(6px);z-index:2000;justify-content:center;align-items:center;padding:1.5rem}
+.modal.open{display:flex}
+.mbox{background:#0f172a;padding:2rem;border-radius:20px;width:100%;max-width:440px;position:relative;border:1px solid var(--accent);animation:pop .3s ease}
+@keyframes pop{from{opacity:0;transform:scale(.94)}}
+.mbox h3{margin-bottom:1.2rem;text-align:center}
+.x{position:absolute;top:14px;right:18px;background:none;border:0;color:var(--muted);cursor:pointer;font-size:1.1rem}
+.row{background:var(--bg);padding:.9rem 1rem;border-radius:12px;border:1px solid var(--line);margin-bottom:.8rem;display:flex;align-items:center;gap:12px;position:relative}
+.row i{color:var(--accent);width:18px;text-align:center}
+.row small{display:block;font-size:.62rem;color:var(--muted)}
+.row h4{font-size:.82rem;font-weight:600}
+.mini{margin-left:auto;background:var(--accent);color:#020617;border:0;padding:5px 10px;border-radius:6px;font-size:.7rem;font-weight:800;cursor:pointer;text-decoration:none}
+footer{border-top:1px solid var(--line);padding:2.5rem 1rem;text-align:center;color:var(--muted);font-size:.78rem}
+footer .soc{margin-bottom:1rem;display:flex;justify-content:center;gap:22px;font-size:1.3rem}
+footer .soc a{transition:color .2s,transform .2s}footer .soc a:hover{color:var(--accent);transform:translateY(-3px)}
 
-        .profile-img {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            border: 4px solid var(--accent);
-            margin-bottom: 1.5rem;
-            object-fit: cover;
-            box-shadow: 0 0 25px var(--accent-glow);
-            background-color: #1e293b;
-        }
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
 
-        h1 {
-            font-size: clamp(2rem, 8vw, 3.5rem);
-            margin-bottom: 0.5rem;
-            font-weight: 800;
-            background: linear-gradient(to right, #fff, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(0.85rem, 3vw, 1.2rem);
-            color: var(--accent);
-            margin-bottom: 2rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        main { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-
-        section { margin-bottom: 5rem; }
-
-        h2 {
-            font-size: 1.7rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--accent);
-        }
-
-        .about-card {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            text-align: left;
-        }
-        .about-card p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .project-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .project-card h3 { font-size: 1.2rem; margin-bottom: 1rem; color: #fff; }
-        .project-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
-
-        .tech-tag {
-            font-size: 0.7rem;
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-weight: 700;
-            margin-right: 5px;
-            margin-bottom: 5px;
-            display: inline-block;
-        }
-
-        .project-links a { color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
-
-        /* GAME STYLES */
-        #game-container {
-            background: #0f172a;
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid var(--accent);
-            margin-top: 2rem;
-            overflow: hidden;
-        }
-        canvas {
-            max-width: 100%;
-            height: auto;
-            background: #020617;
-            border-radius: 10px;
-            border: 1px solid #1e293b;
-            touch-action: none;
-        }
-        .game-hud {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 10px;
-            font-size: 0.8rem;
-            color: var(--accent);
-            text-transform: uppercase;
-        }
-        .game-hud span { color: #fff; font-family: monospace; font-size: 1rem; }
-        #game-sub { color: var(--text-muted); font-size: 0.8rem; margin-top: 10px; }
-
-        /* MODAL STYLES */
-        .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(2, 6, 23, 0.98); z-index: 2000;
-            justify-content: center; align-items: center; padding: 1.5rem;
-        }
-        .modal-content {
-            background: #1e293b; padding: 2rem; border-radius: 20px; width: 100%; max-width: 450px;
-            position: relative; border: 1px solid var(--accent); text-align: center;
-        }
-        .contact-detail-card {
-            background: #0f172a; padding: 1rem; border-radius: 12px; border: 1px solid #334155;
-            margin-bottom: 1rem; text-align: left; display: flex; align-items: center; gap: 12px; position: relative;
-        }
-        .copy-btn {
-            background: var(--accent); color: #020617; border: none; padding: 4px 8px;
-            border-radius: 4px; font-size: 0.7rem; font-weight: 800; cursor: pointer; position: absolute; right: 10px;
-        }
-
-        .btn {
-            padding: 0.8rem 1.8rem; border-radius: 50px; text-decoration: none;
-            font-weight: 700; cursor: pointer; transition: 0.3s; border: none;
-            display: inline-block; font-size: 0.9rem; margin-top: 10px;
-        }
-        .btn-primary { background-color: var(--accent); color: #020617; }
-        .btn-secondary { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.2); }
-
-        .subsection-label {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin: 2.5rem 0 1rem;
-            padding: 0.5rem 1rem;
-            border-left: 3px solid var(--accent);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .subsection-label span {
-            background: rgba(56,189,248,0.1);
-            color: var(--accent);
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 700;
-        }
-
-        .project-img {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(56,189,248,0.15);
-            object-fit: cover;
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .btn { width: 100%; text-align: center; }
-            .subsection-label { font-size: 0.9rem; }
-        }
-    </style>
+@media(max-width:860px){
+.hero,.about,.cols{grid-template-columns:1fr}
+.hero{padding-top:6rem}.hero-side{margin-top:1rem}
+.stats{grid-template-columns:repeat(2,1fr)}
+.flow{grid-template-columns:1fr 1fr}.compare{grid-template-columns:1fr}
+.burger{display:block}
+.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(2,6,23,.97);padding:1.2rem;gap:1.1rem;border-bottom:1px solid var(--line)}
+.nav-links.open{display:flex}
+.btn{width:100%;justify-content:center}.grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
 </head>
 <body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="progress"></div>
 
-    <div class="bg-blur" style="top: 10%; left: 10%;"></div>
+<nav>
+  <a class="logo" href="#top">&lt;ariful<b>.dev</b>/&gt;</a>
+  <button class="burger" id="burger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  <div class="nav-links" id="links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#lab">Fun Lab</a>
+    <a href="https://youtube.com/@letscomputebangla?si=VRSNBymOT3NEBsTq" target="_blank" rel="noopener">YouTube</a>
+    <a class="open-contact">Contact</a>
+  </div>
+</nav>
 
-    <nav>
-        <div style="font-weight: 800; font-size: 1.1rem; color: var(--accent);">ARIFUL MONDAL.</div>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#featured">Featured</a>
-            <a href="#all-projects">Showcase</a>
-            <a href="#game-lab">Fun Lab</a>
-            <a href="https://youtube.com/@letscompute-n8k?si=dyfIZ19riqCKZur3" target="_blank">YouTube (EN)</a>
-            <a href="https://youtube.com/@letscomputebangla?si=VRSNBymOT3NEBsTq" target="_blank">YouTube (Bangla)</a>
-            <a onclick="document.getElementById('contactModal').style.display='flex'">Contact</a>
-        </div>
-    </nav>
-
-    <header>
-        <img src="Myphoto.png" alt="Ariful Mondal" class="profile-img">
-        <h1>Ariful Mondal</h1>
-        <p class="hero-subtitle">Data Analysis | Data Science | Data Engineering</p>
-        <div>
-            <a onclick="document.getElementById('contactModal').style.display='flex'" class="btn btn-primary">Let's Talk</a>
-            <a href="#featured" class="btn btn-secondary">Featured Work</a>
-        </div>
-    </header>
-
-    <main>
-        <!-- ABOUT ME -->
-        <section id="about">
-            <h2><i class="fas fa-user-astronaut"></i> About Me</h2>
-            <div class="about-card">
-                <p>Hi, I'm Ariful Mondal. I am a data professional focused on converting messy enterprise numbers into interactive dashboards, automated intelligence, and clear operational strategies. My approach bridges deep mathematical analysis with real-world execution, helping organizations unlock key patterns and minimize revenue leakage.</p>
-                <p>With hands-on experience navigating supply chain and professional operations, I focus heavily on operational data analytics. I specialize in building complete descriptive pipelines—transforming raw business data into structured SQL databases and designing dynamic Power BI reports that track key performance metrics at a glance. My expertise lies in parsing historical metrics, performing target segment analysis, and turning complex metrics into simple stories that guide executive decisions.</p>
-                <p>While data analysis and business intelligence are my core focus, I actively extend these insights into data science and predictive analytics using Python, NumPy, and Pandas to write automated clean-up logic and engineer high-performance machine learning models.</p>
-            </div>
-        </section>
-
-        <!-- FEATURED -->
-        <section id="featured">
-            <h2><i class="fas fa-star"></i> Featured Projects</h2>
-
-            <!-- FEATURED: DATA ANALYSIS -->
-            <div class="subsection-label">
-                <i class="fas fa-chart-bar" style="color:var(--accent)"></i>
-                Data Analysis
-                <span>Projects</span>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="project-customer-behavior.png" alt="Customer Behavior Power BI Dashboard" class="project-img">
-                    <h3>Customer Shopping Behavior</h3>
-                    <p>End-to-end Python-to-MySQL pipeline analyzing 3,900 accounts &amp; $233K revenue. Power BI dashboard proved 76% of revenue comes from Clothing &amp; Accessories.</p>
-                    <div><span class="tech-tag">Power BI</span><span class="tech-tag">MySQL</span><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span></div>
-                    <div class="project-links"><a href="https://github.com/Ariful579/Customer-Shopping-Behavior-Analysis" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
-            </div>
-            <div class="project-card">
-                    <img src="Revenue_analysis_dashboard.png" alt="Revenue Analysis Dashboard" class="project-img">
-                    <h3>Revenue Analysis & Forecasting</h3>
-                    <p>Comprehensive Power BI dashboard analyzing corporate revenue streams, regional sales performance, and high-margin product categories to optimize business growth.</p>
-                    <div><span class="tech-tag">Power BI</span><span class="tech-tag">DAX</span><span class="tech-tag">Data Modeling</span><span class="tech-tag">Excel</span></div>
-                    <div class="project-links"><a href="https://github.com/Ariful579/Revenue-Analysis-Dashboard" target="_blank">View Live Dashboard <i class="fas fa-external-link-alt"></i></a></div>
-             </div>
-                <div class="project-card">
-                    <img src="project-telecom-churn.png" alt="Telecom Churn Excel Dashboard" class="project-img">
-                    <h3>Telecom Churn Analysis</h3>
-                    <p>Multi-slicer dashboard tracking a 26.53% portfolio churn rate. Isolated $2.86M revenue leakage and diagnosed a 10-month median customer lifespan risk corridor.</p>
-                    <div><span class="tech-tag">Excel</span><span class="tech-tag">Pivot Tables</span><span class="tech-tag">Slicers</span></div>
-                    <div class="project-links"><a href="https://github.com/Ariful579/Telecom-Customer-Churn-Analysis" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
-                </div>
-                <div class="project-card">
-                    <img src="project-inventory.png" alt="Inventory & Supply Chain Power BI Dashboard" class="project-img">
-                    <h3>Inventory &amp; Supply Chain</h3>
-                    <p>Data-driven strategies to reduce stockouts by 12% using historic portfolio trends. Built on 2+ years of professional supply chain experience.</p>
-                    <div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span><span class="tech-tag">Matplotlib</span><span class="tech-tag">Seaborn</span></div>
-                    <div class="project-links"><a href="https://github.com/Ariful579/Inventory-and-Supply-Chain-Project" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
-                </div>
-                <div class="project-card">
-                    <h3>HR Analytics Dashboard</h3>
-                    <p>Identified 3 critical enterprise factors directly contributing to employee attrition metrics through an interactive Power BI dashboard.</p>
-                    <div><span class="tech-tag">Power BI</span><span class="tech-tag">Excel</span></div>
-                    <div class="project-links"><a href="https://github.com/Ariful579/HR-Analysis-with-Power-BI" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
-                </div>
-                <div class="project-card">
-                     <img src="Sales & Revenue Analytics.png" alt="Sales & Revenue Analytics" class="project-img">
-                    <h3>Sales &amp; Revenue Analytics</h3>
-                    <p>Automated reporting pipelines using Power Query and Pivot Tables to uncover seasonal revenue trends and streamline executive reporting.</p>
-                    <div><span class="tech-tag">Excel</span><span class="tech-tag">Power Query</span><span class="tech-tag">Pivot Tables</span></div>
-                    <div class="project-links"><a href="https://github.com/Ariful579/Data-Analysis-with-Excel" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
-                </div>
-            </div>
-
-            <!-- FEATURED: DATA SCIENCE & DEEP LEARNING -->
-            <div class="subsection-label" style="margin-top:3rem;">
-                <i class="fas fa-brain" style="color:var(--accent)"></i>
-                Data Science &amp; Deep Learning
-                <span>Projects</span>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Gold Price Prediction <span style="font-size:0.65rem; color:var(--text-muted); font-weight:400;">— ML</span></h3>
-                    <p>Forecasting asset valuations using Random Forest Regressor, achieving a high-accuracy R² score of 0.92. Pipeline covers ingestion, feature selection, and evaluation.</p>
-                    <div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Random Forest</span><span class="tech-tag">NumPy</span></div>
-                    <div class="project-links"><a href="https://github.com/Ariful579/Gold-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
-                </div>
-                <div class="project-card">
-                    <img src="project-diabetes-histograms.png" alt="Diabetes Prediction Feature Distribution Plots" class="project-img">
-                    <h3>Diabetes Prediction <span style="font-size:0.65rem; color:var(--text-muted); font-weight:400;">— ML</span></h3>
-                    <p>Predictive modeling pipeline using clinical indicators (Glucose, BMI, Age) to assess diabetic risk. Includes Joblib model serialization for deployment-ready output.</p>
-                    <div><span class="tech-tag">SVM</span><span class="tech-tag">Random Forest</span><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Joblib</span></div>
-                    <div class="project-links"><a href="https://github.com/Ariful579/diabetes_prediction" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
-                </div>
-                <div class="project-card">
-                    <h3>Sonar Rock vs. Mine <span style="font-size:0.65rem; color:var(--text-muted); font-weight:400;">— Deep Learning</span></h3>
-                    <p>Achieved 85% accuracy in high-frequency acoustic signal categorization using an ANN. Processes sonar returns to distinguish rock from metal cylinders.</p>
-                    <div><span class="tech-tag">TensorFlow</span><span class="tech-tag">Keras</span><span class="tech-tag">ANN</span><span class="tech-tag">Scikit-learn</span></div>
-                    <div class="project-links"><a href="https://github.com/Ariful579/Sonar-Rock-vs-Mine-Prediction" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
-                </div>
-                <div class="project-card">
-                    <h3>ANN Classification <span style="font-size:0.65rem; color:var(--text-muted); font-weight:400;">— Deep Learning</span></h3>
-                    <p>Engineered an ANN architecture optimized for multi-feature binary classification. Covers layer design, activation tuning, and performance evaluation.</p>
-                    <div><span class="tech-tag">TensorFlow</span><span class="tech-tag">Keras</span><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Matplotlib</span></div>
-                    <div class="project-links"><a href="https://github.com/Ariful579/ANN-Classification-Project" target="_blank">View Repo <i class="fab fa-github"></i></a></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- DATA RUNNER GAME -->
-        <section id="game-lab">
-            <h2><i class="fas fa-gamepad"></i> Interactive Lab: Data Runner</h2>
-            <div id="game-container">
-                <div class="game-hud">
-                    score <span id="sEl">0</span>
-                    best <span id="bEl">0</span>
-                    level <span id="lEl">1</span>
-                </div>
-                <canvas id="c" width="680" height="170"></canvas>
-                <p id="game-sub">dodge the noise. collect the signal. (SPACE/TAP to start)</p>
-                <button id="runBtn" class="btn btn-primary" style="display:none; margin-top:10px">Run Again</button>
-            </div>
-        </section>
-
-        <!-- FULL SHOWCASE -->
-        <section id="all-projects">
-            <h2><i class="fas fa-folder-open"></i> Full Projects Showcase</h2>
-            <div class="projects-grid">
-                <div class="project-card"><h3>1. Customer Shopping Behavior</h3><p>Architecture to analyze consumer purchasing trends across 3,900 accounts ($233K revenue). Python-to-MySQL pipeline with Power BI dashboard.</p><div><span class="tech-tag">Python</span><span class="tech-tag">MySQL</span><span class="tech-tag">Power BI</span></div><div class="project-links"><a href="https://github.com/Ariful579/Customer-Shopping-Behavior-Analysis" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>2. Telecom Customer Churn</h3><p>Corporate analytical app tracking a 26.53% churn rate and isolated $2.86M revenue leakage.</p><div><span class="tech-tag">Excel</span><span class="tech-tag">Pivot Tables</span><span class="tech-tag">Slicers</span></div><div class="project-links"><a href="https://github.com/Ariful579/Telecom-Customer-Churn-Analysis" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>3. Inventory &amp; Supply Chain</h3><p>Proposed data-driven strategies to reduce stockouts by 12% leveraging historic portfolio trends.</p><div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span><span class="tech-tag">Seaborn</span></div><div class="project-links"><a href="https://github.com/Ariful579/Inventory-and-Supply-Chain-Project" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>4. HR Analytics Dashboard</h3><p>Identified 3 critical enterprise factors directly contributing to employee attrition metrics.</p><div><span class="tech-tag">Power BI</span><span class="tech-tag">Excel</span></div><div class="project-links"><a href="https://github.com/Ariful579/HR-Analysis-with-Power-BI" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>5. Sales &amp; Revenue Analytics</h3><p>Built automated reporting pipelines via Power Query to uncover seasonal revenue trends.</p><div><span class="tech-tag">Excel</span><span class="tech-tag">Power Query</span><span class="tech-tag">Pivot Tables</span></div><div class="project-links"><a href="https://github.com/Ariful579/Data-Analysis-with-Excel" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>6. ServiceNow Leave Management</h3><p>Scoped application to orchestrate automated employee absence requests with approval workflows.</p><div><span class="tech-tag">ServiceNow</span><span class="tech-tag">Flow Designer</span><span class="tech-tag">JS</span></div><div class="project-links"><a href="https://github.com/Ariful579/ServiceNow-Leave-Management" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>7. Gold Price Prediction</h3><p>Forecasting engine using Random Forest Regressor achieving an R² score of 0.92.</p><div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Random Forest</span><span class="tech-tag">NumPy</span></div><div class="project-links"><a href="https://github.com/Ariful579/Gold-Price-Prediction-Using-Random-Forest-Regressor" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>8. Sonar Rock vs. Mine</h3><p>Achieved 85% accuracy in high-frequency acoustic signal categorization using an ANN.</p><div><span class="tech-tag">TensorFlow</span><span class="tech-tag">Keras</span><span class="tech-tag">ANN</span></div><div class="project-links"><a href="https://github.com/Ariful579/Sonar-Rock-vs-Mine-Prediction" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>9. Deep Learning ANN</h3><p>Engineered an ANN architecture optimized for multi-feature binary classification challenges.</p><div><span class="tech-tag">Keras</span><span class="tech-tag">TensorFlow</span><span class="tech-tag">Matplotlib</span></div><div class="project-links"><a href="https://github.com/Ariful579/ANN-Classification-Project" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>10. Diabetes Prediction</h3><p>Predictive modeling pipeline using clinical indicators (Glucose, BMI, Age) to identify risk factors.</p><div><span class="tech-tag">SVM</span><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Joblib</span></div><div class="project-links"><a href="https://github.com/Ariful579/diabetes_prediction" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>11. Heart Disease Prediction</h3><p>Binary classification using clinical features like cholesterol and blood pressure to assess cardiovascular risk.</p><div><span class="tech-tag">Logistic Regression</span><span class="tech-tag">Seaborn</span><span class="tech-tag">Pandas</span></div><div class="project-links"><a href="https://github.com/Ariful579/Heart_disease_prediction" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>12. Feature Engineering</h3><p>Implementation of preprocessing pipelines, feature scaling, encoding mechanics, and transformation logic.</p><div><span class="tech-tag">Python</span><span class="tech-tag">Pandas</span><span class="tech-tag">Scikit-learn</span></div><div class="project-links"><a href="https://github.com/Ariful579/Feature-Engineering-Project" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>13. Machine Learning Pipelines</h3><p>End-to-end deployment workflows connecting raw data ingestion, feature extraction, model tuning, and evaluation.</p><div><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Python</span><span class="tech-tag">Joblib</span></div><div class="project-links"><a href="https://github.com/Ariful579/Machine-learning-pipelines-practical" target="_blank">Repo <i class="fab fa-github"></i></a></div></div>
-                <div class="project-card"><h3>Revenue Analysis & Forecasting</h3><p>End-to-end ETL pipeline and interactive dashboard analyzing regional sales performance, product profit margins, and customer retention trends.</p><div><span class="tech-tag">Power BI</span><span class="tech-tag">SQL</span><span class="tech-tag">DAX</span><span class="tech-tag">ETL</span></div><div class="project-links"><a href="https://github.com/Ariful579/Revenue-Analysis-Dashboard" target="_blank">Repo<i class="fab fa-github"> </i></a></div>
-            </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- CONTACT MODAL -->
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
-            <span onclick="document.getElementById('contactModal').style.display='none'" style="position: absolute; top: 15px; right: 20px; color: var(--text-muted); cursor: pointer;"><i class="fas fa-times"></i></span>
-            <h3 style="margin-bottom: 1.5rem;">Contact Information</h3>
-            <div class="contact-detail-card">
-                <i class="fas fa-user" style="color:var(--accent)"></i>
-                <div><p style="font-size:0.6rem">Name</p><h4>Ariful Mondal</h4></div>
-            </div>
-            <div class="contact-detail-card">
-                <i class="fas fa-envelope" style="color:var(--accent)"></i>
-                <div><p style="font-size:0.6rem">Email Address</p><h4 id="emailId" style="font-size:0.8rem"></h4></div>
-                <button onclick="copyMail()" id="cpBtn" class="copy-btn">Copy</button>
-            </div>
-            <div class="contact-detail-card">
-                <i class="fab fa-linkedin" style="color:var(--accent)"></i>
-                <div><p style="font-size:0.6rem">LinkedIn</p><h4 style="font-size:0.8rem">Ariful Mondal</h4></div>
-                <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349/" target="_blank" class="copy-btn" style="text-decoration:none; padding:4px 8px;">Visit</a>
-            </div>
-            <div class="contact-detail-card">
-                <i class="fab fa-youtube" style="color:var(--accent)"></i>
-                <div><p style="font-size:0.6rem">YouTube (English)</p><h4 style="font-size:0.8rem">Let's Compute</h4></div>
-                <a href="https://youtube.com/@letscompute-n8k?si=dyfIZ19riqCKZur3" target="_blank" class="copy-btn" style="text-decoration:none; padding:4px 8px;">Visit</a>
-            </div>
-            <div class="contact-detail-card">
-                <i class="fab fa-youtube" style="color:var(--accent)"></i>
-                <div><p style="font-size:0.6rem">YouTube (Bangla)</p><h4 style="font-size:0.8rem">Let's Compute Bangla</h4></div>
-                <a href="https://youtube.com/@letscomputebangla?si=VRSNBymOT3NEBsTq" target="_blank" class="copy-btn" style="text-decoration:none; padding:4px 8px;">Visit</a>
-            </div>
-            <a id="mailtoBtn" href="#" class="btn btn-primary" style="width:100%">Open Mail App</a>
-            <div style="margin-top:1.5rem; display:flex; justify-content:center; gap:25px">
-                <a href="https://github.com/Ariful579" target="_blank" style="color:var(--text-muted); font-size:1.5rem"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349/" target="_blank" style="color:var(--accent); font-size:1.5rem"><i class="fab fa-linkedin"></i></a>
-                <a href="https://youtube.com/@letscompute-n8k?si=dyfIZ19riqCKZur3" target="_blank" style="color:#ef4444; font-size:1.5rem"><i class="fab fa-youtube"></i></a>
-                <a href="https://youtube.com/@letscomputebangla?si=VRSNBymOT3NEBsTq" target="_blank" style="color:#ef4444; font-size:1.5rem"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <div class="status"><span class="dot"></span> Open to Data and AI Roles</div>
+    <h1>Hi, I'm <span>Ariful Mondal</span>.</h1>
+    <div class="typed" id="typed" aria-live="polite"></div>
+    <p class="lead">I turn messy enterprise numbers into interactive dashboards, automated pipelines and machine-learning models that guide real decisions.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary open-contact"><i class="fas fa-paper-plane"></i> Let's Talk</a>
+      <a class="btn btn-ghost" href="#projects"><i class="fas fa-code-branch"></i> Featured Work</a>
     </div>
+  </div>
+  <div class="hero-side">
+    <img src="Myphoto.png" alt="Ariful Mondal" class="photo" id="photo">
+    <div class="term" aria-hidden="true">
+      <div class="term-bar"><i></i><i></i><i></i>&nbsp;pipeline.py</div>
+      <pre id="termOut"></pre>
+    </div>
+  </div>
+</div>
 
-    <footer>
-        <div style="margin-bottom: 1rem;">
-            <a href="https://github.com/Ariful579" target="_blank" style="color: var(--text-muted); margin: 0 10px; font-size: 1.3rem;"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349/" target="_blank" style="color: var(--text-muted); margin: 0 10px; font-size: 1.3rem;"><i class="fab fa-linkedin"></i></a>
-            <a href="https://youtube.com/@letscompute-n8k?si=dyfIZ19riqCKZur3" target="_blank" style="color: var(--text-muted); margin: 0 10px; font-size: 1.3rem;" title="Let's Compute (English)"><i class="fab fa-youtube"></i></a>
-            <a href="https://youtube.com/@letscomputebangla?si=VRSNBymOT3NEBsTq" target="_blank" style="color: var(--text-muted); margin: 0 10px; font-size: 1.3rem;" title="Let's Compute Bangla"><i class="fab fa-youtube"></i></a>
-        </div>
-        <p style="color: var(--text-muted); font-size: 0.7rem;">&copy; 2026 Ariful Mondal | Data Specialist</p>
-    </footer>
+<div class="wrap rv" id="skillsBoxes">
+  <h3 class="sk-h"><i class="fas fa-chart-column"></i> Data Analysis</h3>
+  <div class="skgrid"><div class="skbox"><i class="fas fa-chart-pie"></i><span>Power BI</span></div><div class="skbox"><i class="fas fa-calculator"></i><span>DAX</span></div><div class="skbox"><i class="fas fa-file-excel"></i><span>Excel</span></div><div class="skbox"><i class="fas fa-filter"></i><span>Power Query</span></div><div class="skbox"><i class="fas fa-table"></i><span>Pivot Tables</span></div><div class="skbox"><i class="fas fa-database"></i><span>SQL / MySQL</span></div><div class="skbox"><i class="fas fa-broom"></i><span>Data Cleaning</span></div><div class="skbox"><i class="fas fa-gauge-high"></i><span>Dashboard Design</span></div><div class="skbox"><i class="fas fa-diagram-project"></i><span>ServiceNow</span></div></div>
+  <h3 class="sk-h"><i class="fas fa-flask"></i> Data Science</h3>
+  <div class="skgrid"><div class="skbox"><i class="fas fa-code"></i><span>Python</span></div><div class="skbox"><i class="fas fa-table-cells"></i><span>Pandas</span></div><div class="skbox"><i class="fas fa-superscript"></i><span>NumPy</span></div><div class="skbox"><i class="fas fa-gears"></i><span>Scikit-learn</span></div><div class="skbox"><i class="fas fa-chart-line"></i><span>Statistics</span></div><div class="skbox"><i class="fas fa-magnifying-glass-chart"></i><span>EDA</span></div><div class="skbox"><i class="fas fa-wand-magic-sparkles"></i><span>Feature Engineering</span></div><div class="skbox"><i class="fas fa-chart-line"></i><span>Regression</span></div><div class="skbox"><i class="fas fa-code-branch"></i><span>Classification</span></div><div class="skbox"><i class="fas fa-tree"></i><span>Random Forest</span></div><div class="skbox"><i class="fas fa-circle-nodes"></i><span>SVM</span></div><div class="skbox"><i class="fas fa-bullseye"></i><span>Model Evaluation</span></div><div class="skbox"><i class="fas fa-bars-progress"></i><span>ML Pipelines</span></div><div class="skbox"><i class="fas fa-chart-simple"></i><span>Matplotlib / Seaborn</span></div></div>
+  <h3 class="sk-h"><i class="fas fa-robot"></i> Artificial Intelligence</h3>
+  <div class="skgrid"><div class="skbox"><i class="fas fa-brain"></i><span>Deep Learning</span></div><div class="skbox"><i class="fas fa-network-wired"></i><span>Neural Networks (ANN)</span></div><div class="skbox"><i class="fas fa-layer-group"></i><span>TensorFlow</span></div><div class="skbox"><i class="fas fa-cubes"></i><span>Keras</span></div><div class="skbox"><i class="fas fa-eye"></i><span>Computer Vision</span></div><div class="skbox"><i class="fas fa-right-left"></i><span>Transfer Learning</span></div><div class="skbox"><i class="fas fa-mobile-screen"></i><span>MobileNetV2</span></div><div class="skbox"><i class="fas fa-plane-slash"></i><span>Offline AI Inference</span></div><div class="skbox"><i class="fas fa-window-maximize"></i><span>Streamlit Apps</span></div></div>
+</div>
 
-    <script>
-        // --- EMAIL (obfuscated to block scrapers) ---
-        const _e = ['arifulmondal14082001', 'outlook', 'com'];
-        const _em = _e[0] + '@' + _e[1] + '.' + _e[2];
-        document.getElementById('emailId').textContent = _em;
-        document.getElementById('mailtoBtn').href = 'mailto:' + _em;
+<section id="about"><div class="wrap about rv">
+  <div>
+    <h2><i class="fas fa-user-astronaut"></i>About</h2>
+    <p class="sub">Analysis first, models second, always tied to a decision.</p>
+    <p>I am a data professional focused on converting messy enterprise numbers into interactive dashboards, automated intelligence, and clear operational strategies. My approach bridges deep mathematical analysis with real-world execution, helping organizations unlock key patterns and minimize revenue leakage.</p>
+    <p>With hands-on experience in supply chain and professional operations, I build complete descriptive pipelines, from raw business data to structured SQL databases to dynamic Power BI reports that track key metrics at a glance.</p>
+    <p>I extend those insights into data science and predictive analytics using Python, NumPy and Pandas to write automated clean-up logic and engineer high-performance machine learning models.</p>
+  </div>
+  <div class="skills" id="skills">
+    <div class="skill"><label><span>Power BI / Excel</span><span>90%</span></label><div class="bar"><i data-w="90"></i></div></div>
+    <div class="skill"><label><span>SQL / MySQL</span><span>82%</span></label><div class="bar"><i data-w="82"></i></div></div>
+    <div class="skill"><label><span>Python / Pandas</span><span>85%</span></label><div class="bar"><i data-w="85"></i></div></div>
+    <div class="skill"><label><span>ML / Scikit-learn</span><span>75%</span></label><div class="bar"><i data-w="75"></i></div></div>
+    <div class="skill"><label><span>Deep Learning / TensorFlow</span><span>70%</span></label><div class="bar"><i data-w="70"></i></div></div>
+  </div>
+</div></section>
 
-        // --- EMAIL COPY LOGIC ---
-        function copyMail() {
-            const email = _em;
-            const btn = document.getElementById('cpBtn');
-            navigator.clipboard.writeText(email).then(() => {
-                btn.innerText = "Copied!";
-                btn.style.background = "#22c55e";
-                setTimeout(() => { btn.innerText = "Copy"; btn.style.background = "var(--accent)"; }, 2000);
-            });
-        }
+<section id="projects"><div class="wrap">
+  <div class="rv"><h2><i class="fas fa-layer-group"></i>Projects</h2>
+  <p class="sub">Filter by discipline. Hover a card to inspect it.</p>
+  <div class="filters" id="filters"></div></div>
+  <div class="grid" id="grid"></div>
+</div></section>
 
-        // --- GAME LOGIC (RESKINNED FOR DARK THEME) ---
-        const c = document.getElementById('c');
-        const ctx = c.getContext('2d');
-        const W = 680, H = 170;
-        const GROUND = 128;
-        const G = 0.52, JUMP = -11.5;
+<section id="civiccura"><div class="wrap rv">
+  <div class="civic">
+    <span class="badge">NEW · FLAGSHIP PROJECT</span>
+    <h3>CivicCura-AI</h3>
+    <p class="tagline">AI-Powered Offline Retinal Diagnostic Network for Primary Screening</p>
+    <div class="cols">
+      <div><h4>// problem</h4><p>Diabetic retinopathy leads to preventable blindness, but 80%+ of cases occur in low-resource settings lacking $10,000+ fundus cameras, stable internet, and specialized ophthalmologists.</p></div>
+      <div><h4>// solution</h4><p>An offline-first AI diagnostic system running locally on standard PCs. Paired with low-cost smartphone optical adapters (~$30), it delivers zero-latency primary screening, visual risk alerts, and downloadable PDF medical reports with no cloud or internet.</p></div>
+    </div>
+    <div class="compare">
+      <div><b data-count="80" data-suffix="%+">0</b><span>of cases in low-resource settings</span></div>
+      <div><b>$30 vs $10k+</b><span>adapter vs fundus camera</span></div>
+      <div><b>0</b><span>internet connections needed</span></div>
+    </div>
+    <h4 style="font-family:var(--mono);font-size:.8rem;color:var(--accent2);margin-bottom:.6rem">// how it works (click a step)</h4>
+    <div class="flow" id="flow">
+      <button class="step" data-d="A smartphone clipped to a ~$30 optical adapter captures the retinal image. No specialist hardware."><i class="fas fa-mobile-screen"></i><strong>Capture</strong></button>
+      <button class="step" data-d="The image is passed to the local PC app (Streamlit). Nothing ever leaves the machine."><i class="fas fa-desktop"></i><strong>Local app</strong></button>
+      <button class="step" data-d="MobileNetV2 trained on APTOS 2019 runs 100% offline inference and grades diabetic retinopathy risk."><i class="fas fa-brain"></i><strong>Inference</strong></button>
+      <button class="step" data-d="A visual risk alert is shown and ReportLab generates a downloadable PDF medical report."><i class="fas fa-file-medical"></i><strong>Report</strong></button>
+    </div>
+    <div class="detail" id="flowDetail"></div>
+    <div><span class="tag">MobileNetV2</span><span class="tag">APTOS 2019</span><span class="tag">Python 3.13</span><span class="tag">TensorFlow</span><span class="tag">Streamlit</span><span class="tag">ReportLab</span><span class="tag">Offline inference</span><span class="tag">One-click batch deploy</span></div>
+    <div class="links" id="civicLinks"></div>
+  </div>
+</div></section>
 
-        const sEl = document.getElementById('sEl'), bEl = document.getElementById('bEl'), lEl = document.getElementById('lEl');
-        const sub = document.getElementById('game-sub'), runBtn = document.getElementById('runBtn');
+<section id="lab"><div class="wrap rv">
+  <h2><i class="fas fa-gamepad"></i>Interactive Lab: Data Runner</h2>
+  <p class="sub">Dodge the noise, collect the signal. Hold jump for higher leaps, double jump mid-air, grab AI gems for a shield, press P to pause.</p>
+  <div id="game">
+    <div class="hud">score <span id="sEl">0</span> best <span id="bEl">0</span> level <span id="lEl">1</span></div>
+    <canvas id="c" width="680" height="170"></canvas>
+    <p id="gsub">SPACE / TAP to start</p>
+    <button id="runBtn" class="btn btn-primary" style="display:none;margin-top:10px">Run Again</button>
+  </div>
+</div></section>
+</main>
 
-        let mode = 'idle', score = 0, best = 0, frame = 0, spd = 3.2, lvl = 1;
-        let obs = [], gems = [], sparks = [];
-        let nextObs = 100, nextGem = 70;
+<div id="skTip" role="tooltip"></div>
 
-        const P = { x: 90, y: GROUND, w: 22, h: 30, vy: 0, grounded: true, jumps: 0 };
+<div id="contactModal" class="modal" role="dialog" aria-modal="true" aria-label="Contact">
+  <div class="mbox">
+    <button class="x" id="closeM" aria-label="Close"><i class="fas fa-times"></i></button>
+    <h3>Contact Information</h3>
+    <div class="row"><i class="fas fa-user"></i><div><small>Name</small><h4>Ariful Mondal</h4></div></div>
+    <div class="row"><i class="fas fa-envelope"></i><div><small>Email</small><h4 id="emailId"></h4></div><button class="mini" id="cpBtn">Copy</button></div>
+    <div class="row"><i class="fab fa-linkedin"></i><div><small>LinkedIn</small><h4>Ariful Mondal</h4></div><a class="mini" href="https://www.linkedin.com/in/ariful-mondal-a7aa50349/" target="_blank" rel="noopener">Visit</a></div>
+    <div class="row"><i class="fab fa-youtube"></i><div><small>YouTube</small><h4>Let's Compute Bangla</h4></div><a class="mini" href="https://youtube.com/@letscomputebangla?si=VRSNBymOT3NEBsTq" target="_blank" rel="noopener">Visit</a></div>
+    <a id="mailtoBtn" href="#" class="btn btn-primary" style="width:100%;justify-content:center">Open Mail App</a>
+  </div>
+</div>
 
-        const OBS = [
-            { label: 'null', w: 30, h: 26, fill: '#1e293b', stroke: '#38bdf8', tc: '#38bdf8' },
-            { label: 'NaN', w: 35, h: 24, fill: '#1e293b', stroke: '#ef4444', tc: '#ef4444' },
-            { label: 'noise', w: 40, h: 34, fill: '#1e293b', stroke: '#94a3b8', tc: '#94a3b8' },
-            { label: 'outlier', w: 45, h: 22, fill: '#1e293b', stroke: '#f59e0b', tc: '#f59e0b' },
-        ];
-        const GEMS = [
-            { label: 'r²', fill: '#22c55e', tc: '#fff' },
-            { label: 'csv', fill: '#38bdf8', tc: '#fff' },
-            { label: '+10', fill: '#8b5cf6', tc: '#fff' },
-            { label: 'p<.05', fill: '#ec4899', tc: '#fff' },
-        ];
+<footer>
+  <div class="soc">
+    <a href="https://github.com/Ariful579" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/ariful-mondal-a7aa50349/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://youtube.com/@letscomputebangla?si=VRSNBymOT3NEBsTq" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+  </div>
+  &copy; 2026 Ariful Mondal | Data Specialist
+</footer>
 
-        function jump() {
-            if (mode === 'idle' || mode === 'dead') { start(); return; }
-            if (P.jumps < 2) { P.vy = JUMP; P.grounded = false; P.jumps++; }
-        }
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        function spawnObs() {
-            const t = OBS[Math.floor(Math.random() * OBS.length)];
-            obs.push({ ...t, x: W + 20, y: GROUND + P.h - t.h, sh: t.h });
-        }
-        function spawnGem() {
-            const g = GEMS[Math.floor(Math.random() * GEMS.length)];
-            gems.push({ ...g, x: W + 20, y: GROUND - 20 - Math.random() * 40, r: 13, spin: 0 });
-        }
+/* ---------- DATA ---------- */
+const gh=r=>'https://github.com/Ariful579/'+r;
+const P=[
+ {c:'cv',k:'Computer vision · Offline AI',t:'CivicCura-AI',d:'Offline-first retinal screening for diabetic retinopathy. MobileNetV2 trained on APTOS 2019 runs locally on a standard PC with a ~$30 smartphone adapter, and produces risk alerts and PDF reports with no internet.',tags:['MobileNetV2','TensorFlow','Streamlit','ReportLab','Python 3.13'],u:'#civiccura',l:'Read case study <i class="fas fa-arrow-down"></i>'},
+ {c:'analytics',k:'Power BI · MySQL',t:'Customer Shopping Behavior',img:'project-customer-behavior.png',d:'End-to-end Python-to-MySQL pipeline analyzing 3,900 accounts & $233K revenue. Power BI dashboard proved 76% of revenue comes from Clothing & Accessories.',tags:['Power BI','MySQL','Python','Pandas'],u:gh('Customer-Shopping-Behavior-Analysis')},
+ {c:'analytics',k:'Power BI · DAX',t:'Revenue Analysis & Forecasting',img:'Revenue_analysis_dashboard.png',d:'Power BI dashboard analyzing revenue streams, regional sales performance and high-margin product categories, backed by an ETL pipeline and DAX measures.',tags:['Power BI','DAX','SQL','ETL'],u:gh('Revenue-Analysis-Dashboard')},
+ {c:'analytics',k:'Excel',t:'Telecom Churn Analysis',img:'project-telecom-churn.png',d:'Multi-slicer dashboard tracking a 26.53% portfolio churn rate. Isolated $2.86M revenue leakage and a 10-month median customer lifespan risk corridor.',tags:['Excel','Pivot Tables','Slicers'],u:gh('Telecom-Customer-Churn-Analysis')},
+ {c:'analytics',k:'Python · Supply chain',t:'Inventory & Supply Chain',img:'project-inventory.png',d:'Data-driven strategies to reduce stockouts by 12% using historic portfolio trends. Built on 2+ years of professional supply chain experience.',tags:['Python','Pandas','Matplotlib','Seaborn'],u:gh('Inventory-and-Supply-Chain-Project')},
+ {c:'analytics',k:'Power BI',t:'HR Analytics Dashboard',d:'Identified 3 critical enterprise factors directly contributing to employee attrition through an interactive Power BI dashboard.',tags:['Power BI','Excel'],u:gh('HR-Analysis-with-Power-BI')},
+ {c:'analytics',k:'Excel · Power Query',t:'Sales & Revenue Analytics',img:'Sales & Revenue Analytics.png',d:'Automated reporting pipelines using Power Query and Pivot Tables to uncover seasonal revenue trends and streamline executive reporting.',tags:['Excel','Power Query','Pivot Tables'],u:gh('Data-Analysis-with-Excel')},
+ {c:'ml',k:'Machine learning',t:'Gold Price Prediction',d:'Forecasting asset valuations with a Random Forest Regressor, achieving an R² of 0.92. Covers ingestion, feature selection and evaluation.',tags:['Scikit-learn','Random Forest','NumPy'],u:gh('Gold-Price-Prediction-Using-Random-Forest-Regressor')},
+ {c:'ml',k:'Machine learning',t:'Diabetes Prediction',img:'project-diabetes-histograms.png',d:'Predictive pipeline using clinical indicators (Glucose, BMI, Age) to assess diabetic risk, with Joblib model serialization for deployment.',tags:['SVM','Random Forest','Scikit-learn','Joblib'],u:gh('diabetes_prediction')},
+ {c:'ml',k:'Machine learning',t:'Heart Disease Prediction',d:'Binary classification using clinical features like cholesterol and blood pressure to assess cardiovascular risk.',tags:['Logistic Regression','Seaborn','Pandas'],u:gh('Heart_disease_prediction')},
+ {c:'ml',k:'Machine learning',t:'Feature Engineering',d:'Preprocessing pipelines, feature scaling, encoding mechanics and transformation logic.',tags:['Python','Pandas','Scikit-learn'],u:gh('Feature-Engineering-Project')},
+ {c:'ml',k:'Machine learning',t:'ML Pipelines',d:'End-to-end workflows connecting raw data ingestion, feature extraction, model tuning and evaluation.',tags:['Scikit-learn','Python','Joblib'],u:gh('Machine-learning-pipelines-practical')},
+ {c:'dl',k:'Deep learning',t:'Sonar Rock vs. Mine',d:'85% accuracy in high-frequency acoustic signal categorization using an ANN that separates rock from metal cylinders.',tags:['TensorFlow','Keras','ANN'],u:gh('Sonar-Rock-vs-Mine-Prediction')},
+ {c:'dl',k:'Deep learning',t:'ANN Classification',d:'ANN architecture for multi-feature binary classification: layer design, activation tuning and performance evaluation.',tags:['TensorFlow','Keras','Matplotlib'],u:gh('ANN-Classification-Project')},
+ {c:'auto',k:'Automation',t:'ServiceNow Leave Management',d:'Scoped application orchestrating automated employee absence requests with approval workflows.',tags:['ServiceNow','Flow Designer','JavaScript'],u:gh('ServiceNow-Leave-Management')}
+];
+const F={all:'All',analytics:'Analytics',ml:'Machine Learning',dl:'Deep Learning',cv:'Computer Vision',auto:'Automation'};
 
-        function start() {
-            mode = 'playing'; score = 0; frame = 0; spd = 3.2; lvl = 1;
-            P.y = GROUND; P.vy = 0; P.grounded = true; P.jumps = 0;
-            obs = []; gems = []; sparks = [];
-            sub.textContent = 'collect the green gems · dodge red outliers';
-            runBtn.style.display = 'none';
-        }
+/* CivicCura links: paste your real URLs here */
+const CIVIC={demo:'',deck:'',repo:''};
+const civicBtns=[['demo','fa-play','Live Video Demo','btn-primary'],['deck','fa-file-pdf','Pitch Deck (PDF)','btn-ghost'],['repo','fa-github','GitHub Repository','btn-ghost']];
+$('#civicLinks').innerHTML=civicBtns.map(([k,i,l,cl])=>CIVIC[k]
+ ?`<a class="btn ${cl}" href="${CIVIC[k]}" target="_blank" rel="noopener"><i class="${k=='repo'?'fab':'fas'} ${i}"></i>${l}</a>`
+ :`<a class="btn ${cl}" aria-disabled="true" title="Link coming soon"><i class="${k=='repo'?'fab':'fas'} ${i}"></i>${l} (soon)</a>`).join('');
 
-        function die() {
-            mode = 'dead'; if (score > best) best = score;
-            bEl.textContent = best; sub.textContent = 'Data Pipeline Crashed! Score: ' + score;
-            runBtn.style.display = 'inline-block';
-        }
+/* ---------- PROJECTS ---------- */
+$('#grid').innerHTML=P.map(p=>`<article class="card rv" data-c="${p.c}">${p.img?`<img src="${p.img}" alt="${p.t} preview" loading="lazy">`:''}<div class="kind">${p.k}</div><h3>${p.t}</h3><p>${p.d}</p><div>${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div><a class="go" href="${p.u}"${p.u[0]=='#'?'':' target="_blank" rel="noopener"'}>${p.l||'View repo <i class="fab fa-github"></i>'}</a></article>`).join('');
+$('#filters').innerHTML=Object.entries(F).map(([k,v],i)=>`<button class="chip${i?'':' on'}" data-f="${k}">${v} <small>${k=='all'?P.length:P.filter(p=>p.c==k).length}</small></button>`).join('');
+$('#filters').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;
+ $$('.chip').forEach(x=>x.classList.toggle('on',x==b));
+ $$('.card').forEach(c=>c.classList.toggle('hide',b.dataset.f!='all'&&c.dataset.c!=b.dataset.f));});
 
-        function update() {
-            if (mode !== 'playing') return;
-            frame++; score++; lvl = Math.floor(score / 500) + 1; spd = 3.2 + lvl * 0.45;
-            sEl.textContent = score; lEl.textContent = lvl;
-            P.vy += G; P.y += P.vy;
-            if (P.y >= GROUND) { P.y = GROUND; P.vy = 0; P.grounded = true; P.jumps = 0; }
-            nextObs--; if (nextObs <= 0) { spawnObs(); nextObs = Math.max(45, 100 - lvl * 5) + Math.random() * 40; }
-            nextGem--; if (nextGem <= 0) { spawnGem(); nextGem = 60 + Math.random() * 80; }
+/* card tilt + spotlight */
+$('#grid').addEventListener('mousemove',e=>{if(reduce)return;const c=e.target.closest('.card');if(!c)return;
+ const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+ c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');
+ c.style.setProperty('--ry',(x-.5)*8+'deg');c.style.setProperty('--rx',(.5-y)*8+'deg');});
+$('#grid').addEventListener('mouseout',e=>{const c=e.target.closest('.card');if(c){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg');}});
 
-            obs.forEach((o, i) => {
-                o.x -= spd;
-                if (o.x < P.x + P.w - 5 && o.x + o.w > P.x + 5 && P.y + P.h > o.y) die();
-                if (o.x + o.w < 0) obs.splice(i, 1);
-            });
-            gems.forEach((g, i) => {
-                g.x -= spd; g.spin += 0.05;
-                const dx = (P.x+P.w/2) - (g.x+g.r), dy = (P.y+P.h/2) - (g.y+g.r);
-                if (Math.sqrt(dx*dx + dy*dy) < 25) { score += 50; gems.splice(i, 1); }
-                if (g.x + g.r*2 < 0) gems.splice(i, 1);
-            });
-        }
+/* ---------- CIVICCURA FLOW ---------- */
+const steps=$$('.step');let si=0,auto=true;
+function setStep(i){si=i;steps.forEach((s,j)=>s.classList.toggle('on',j==i));$('#flowDetail').textContent='> '+steps[i].dataset.d;}
+steps.forEach((s,i)=>s.addEventListener('click',()=>{auto=false;setStep(i);}));
+setStep(0);setInterval(()=>{if(auto)setStep((si+1)%steps.length)},3200);
 
-        function draw() {
-            ctx.clearRect(0, 0, W, H);
-            // Ground line
-            ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(0, GROUND+P.h); ctx.lineTo(W, GROUND+P.h); ctx.stroke();
-            
-            // Player
-            ctx.fillStyle = 'var(--accent)'; ctx.beginPath(); ctx.roundRect(P.x, P.y, P.w, P.h, 5); ctx.fill();
-            ctx.fillStyle = '#020617'; ctx.fillRect(P.x+12, P.y+5, 4, 4); // Eye
+/* ---------- REVEAL + COUNTERS + BARS ---------- */
+function count(el){const to=+el.dataset.count,d=+el.dataset.dec||0,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
+ if(reduce){el.textContent=pre+to.toFixed(d)+suf;return;}
+ const t0=performance.now();(function f(t){const k=Math.min((t-t0)/1400,1),v=to*(1-Math.pow(1-k,3));el.textContent=pre+v.toFixed(d)+suf;if(k<1)requestAnimationFrame(f)})(t0);}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add('in');
+ $$('[data-count]',t).forEach(count);$$('.bar i',t).forEach(b=>b.style.width=b.dataset.w+'%');io.unobserve(t);}),{threshold:.15});
+$$('.rv').forEach(el=>io.observe(el));
+// the skills block lives inside a .rv wrapper, so bars fill with it
 
-            // Objects
-            obs.forEach(o => {
-                ctx.fillStyle = o.fill; ctx.strokeStyle = o.stroke; ctx.lineWidth = 1;
-                ctx.beginPath(); ctx.roundRect(o.x, o.y, o.w, o.sh, 4); ctx.fill(); ctx.stroke();
-                ctx.fillStyle = o.tc; ctx.font = '9px monospace'; ctx.textAlign='center'; ctx.fillText(o.label, o.x+o.w/2, o.y+o.sh/2+4);
-            });
-            // Gems
-            gems.forEach(g => {
-                ctx.save(); ctx.translate(g.x+g.r, g.y+g.r); ctx.rotate(g.spin);
-                ctx.fillStyle = g.fill; ctx.beginPath(); ctx.moveTo(0, -g.r); ctx.lineTo(g.r, 0); ctx.lineTo(0, g.r); ctx.lineTo(-g.r, 0); ctx.closePath(); ctx.fill();
-                ctx.restore(); ctx.fillStyle = '#fff'; ctx.font = 'bold 8px monospace'; ctx.textAlign='center'; ctx.fillText(g.label, g.x+g.r, g.y+g.r+3);
-            });
+/* ---------- TYPED ROLES ---------- */
+const roles=['Data Analysis','Data Science','Artificial Intelligence'];let ri=0,ci=0,del=false;
+(function type(){const w=roles[ri],el=$('#typed');el.textContent='> '+w.slice(0,ci);
+ if(!del&&ci==w.length){del=true;return setTimeout(type,1400)}
+ if(del&&ci==0){del=false;ri=(ri+1)%roles.length}
+ ci+=del?-1:1;setTimeout(type,del?40:85);})();
 
-            if (mode === 'idle') {
-                ctx.fillStyle = 'rgba(2, 6, 23, 0.8)'; ctx.fillRect(0,0,W,H);
-                ctx.fillStyle = 'var(--accent)'; ctx.font = '14px Inter'; ctx.textAlign='center'; ctx.fillText('SPACE / TAP TO START DATA RUN', W/2, H/2);
-            }
-            update(); requestAnimationFrame(draw);
-        }
+/* terminal card */
+const code=['<span class="c"># raw → insight</span>','<span class="k">import</span> pandas <span class="k">as</span> pd','df = pd.read_sql(q, conn)','df = clean(df).pipe(features)','model.fit(X, y)  <span class="c"># R² 0.92</span>','<span class="s">✔ dashboard refreshed</span>'];
+let li=0;const out=$('#termOut');
+function tick(){if(li>=code.length){li=0;out.innerHTML='';}out.innerHTML+=code[li++]+'\n';setTimeout(tick,li==code.length?2600:900);}tick();
 
-        document.addEventListener('keydown', e => { if (e.code === 'Space') { e.preventDefault(); jump(); } });
-        c.addEventListener('touchstart', e => { e.preventDefault(); jump(); });
-        c.addEventListener('mousedown', jump);
-        runBtn.addEventListener('click', start);
-        draw();
+/* photo parallax */
+addEventListener('mousemove',e=>{if(reduce)return;const x=(e.clientX/innerWidth-.5)*10,y=(e.clientY/innerHeight-.5)*10;
+ $('#photo').style.transform=`perspective(800px) rotateY(${x}deg) rotateX(${-y}deg)`;});
 
-        // Modal Layout Close Trigger
-        window.onclick = function(e) { 
-            if(e.target == document.getElementById('contactModal')) document.getElementById('contactModal').style.display = 'none';
-        }
-    </script>
+/* ---------- NAV ---------- */
+addEventListener('scroll',()=>{const h=document.documentElement;$('#progress').style.width=(scrollY/(h.scrollHeight-innerHeight)*100)+'%';},{passive:true});
+const secs=$$('section[id]'),navA=$$('.nav-links a[href^="#"]');
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)navA.forEach(a=>a.classList.toggle('active',a.getAttribute('href')=='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'}).observe&&secs.forEach(s=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)navA.forEach(a=>a.classList.toggle('active',a.getAttribute('href')=='#'+s.id))}),{rootMargin:'-45% 0px -50% 0px'}).observe(s));
+$('#burger').onclick=()=>$('#links').classList.toggle('open');
+$$('.nav-links a').forEach(a=>a.addEventListener('click',()=>$('#links').classList.remove('open')));
+
+/* ---------- CONTACT ---------- */
+const _e=['arifulmondal14082001','outlook','com'],_em=_e[0]+'@'+_e[1]+'.'+_e[2];
+$('#emailId').textContent=_em;$('#mailtoBtn').href='mailto:'+_em;
+const M=$('#contactModal');
+$$('.open-contact').forEach(b=>b.addEventListener('click',()=>M.classList.add('open')));
+$('#closeM').onclick=()=>M.classList.remove('open');
+M.addEventListener('click',e=>{if(e.target==M)M.classList.remove('open')});
+addEventListener('keydown',e=>{if(e.key=='Escape')M.classList.remove('open')});
+$('#cpBtn').onclick=()=>navigator.clipboard.writeText(_em).then(()=>{const b=$('#cpBtn');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',2000)});
+
+/* ---------- PARTICLE NETWORK BG ---------- */
+(function(){const cv=$('#bg'),x=cv.getContext('2d');let w,h,pts=[],m={x:-999,y:-999};
+ function size(){w=cv.width=innerWidth;h=cv.height=innerHeight;pts=Array.from({length:Math.min(80,Math.floor(w*h/18000))},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}));}
+ size();addEventListener('resize',size);addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY});
+ function f(){x.clearRect(0,0,w,h);
+  pts.forEach((p,i)=>{if(!reduce){p.x+=p.vx;p.y+=p.vy;}if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;
+   x.fillStyle='rgba(56,189,248,.55)';x.beginPath();x.arc(p.x,p.y,1.5,0,7);x.fill();
+   for(let j=i+1;j<pts.length;j++){const q=pts[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<130){x.strokeStyle=`rgba(56,189,248,${.14*(1-d/130)})`;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke();}}
+   const dm=Math.hypot(p.x-m.x,p.y-m.y);if(dm<170){x.strokeStyle=`rgba(129,140,248,${.5*(1-dm/170)})`;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(m.x,m.y);x.stroke();}});
+  requestAnimationFrame(f);}f();})();
+
+/* ---------- SKILL TOOLTIPS ---------- */
+const SK={
+'Power BI':"Microsoft's BI tool for turning data models into interactive dashboards and reports that refresh on demand.",
+'DAX':"Power BI's formula language for custom measures like year-over-year growth, running totals and filtered KPIs.",
+'Excel':"Spreadsheet analysis with formulas, pivots, slicers and charts for fast, shareable reporting.",
+'Power Query':"Repeatable no-code ETL: import, clean, merge and reshape data, then refresh it with one click.",
+'Pivot Tables':"Summarise thousands of rows by category, time or region in seconds, then slice them interactively.",
+'SQL / MySQL':"Querying and structuring relational data with joins and aggregations, and loading cleaned data into databases.",
+'Data Cleaning':"Fixing missing values, duplicates, wrong types and outliers so the analysis can be trusted.",
+'Dashboard Design':"Choosing the right visuals, layout and filters so decision makers get the story at a glance.",
+'ServiceNow':"Enterprise workflow platform. I built a scoped leave-management app with Flow Designer approvals.",
+'Python':"My main language for automation, analysis and machine learning.",
+'Pandas':"DataFrame library for loading, cleaning, joining and reshaping tabular data.",
+'NumPy':"Fast numerical arrays and maths that power nearly every Python data and ML library.",
+'Scikit-learn':"Machine learning toolkit for preprocessing, training models, building pipelines and evaluating results.",
+'Statistics':"Distributions, correlation and hypothesis testing to separate real patterns from noise.",
+'EDA':"Exploratory data analysis: histograms, correlations and group comparisons to understand data before modelling.",
+'Feature Engineering':"Scaling, encoding and creating variables that help a model learn the right signal.",
+'Regression':"Predicting continuous values, like my gold price model that reached an R² of 0.92.",
+'Classification':"Predicting categories, such as diabetic risk or heart disease, with logistic regression, SVM and forests.",
+'Random Forest':"An ensemble of decision trees that vote together. Robust and good with non-linear data.",
+'SVM':"Support Vector Machines find the boundary that best separates classes with the widest margin.",
+'Model Evaluation':"Train/test splits and metrics like accuracy and R² to check a model generalises to new data.",
+'ML Pipelines':"Chained preprocessing and model steps, saved with Joblib so results are reproducible and deployable.",
+'Matplotlib / Seaborn':"Python plotting libraries for distributions, comparisons and correlation views.",
+'Deep Learning':"Multi-layer neural networks that learn features directly from data such as images and signals.",
+'Neural Networks (ANN)':"Layers of connected neurons. I used one to classify sonar signals as rock or mine at 85% accuracy.",
+'TensorFlow':"Google's framework for training and deploying neural networks. It powers CivicCura.",
+'Keras':"High-level API for designing, training and tuning neural networks quickly.",
+'Computer Vision':"Teaching machines to read images, for example grading retinal photos for diabetic retinopathy.",
+'Transfer Learning':"Reusing a pretrained network and fine-tuning it on a smaller dataset to get strong results faster.",
+'MobileNetV2':"A lightweight CNN built for low-power devices. It is the engine behind CivicCura.",
+'Offline AI Inference':"Running models locally on a standard PC with no cloud and no internet, with zero latency.",
+'Streamlit Apps':"Python framework for turning models and analysis into interactive web apps."};
+const tip=$('#skTip');let pinned=null;
+function showTip(b){const n=$('span',b).textContent;tip.innerHTML='<b>'+n+'</b>'+(SK[n]||'');
+ const r=b.getBoundingClientRect(),h=tip.offsetHeight;let top=r.bottom+10;if(top+h>innerHeight-8)top=r.top-h-10;
+ tip.style.top=Math.max(8,top)+'px';tip.style.left=Math.min(Math.max(8,r.left+r.width/2-130),innerWidth-268)+'px';tip.classList.add('show');}
+function hideTip(){tip.classList.remove('show');}
+$$('.skbox').forEach(b=>{b.tabIndex=0;b.setAttribute('aria-label',$('span',b).textContent);});
+const sg=$('#skillsBoxes');
+sg.addEventListener('mouseover',e=>{const b=e.target.closest('.skbox');if(b&&!pinned)showTip(b)});
+sg.addEventListener('mouseout',e=>{if(e.target.closest('.skbox')&&!pinned)hideTip()});
+sg.addEventListener('focusin',e=>{const b=e.target.closest('.skbox');if(b)showTip(b)});
+sg.addEventListener('focusout',()=>{if(!pinned)hideTip()});
+sg.addEventListener('click',e=>{const b=e.target.closest('.skbox');if(!b)return;
+ if(pinned===b){b.classList.remove('pin');pinned=null;hideTip();return}
+ if(pinned)pinned.classList.remove('pin');pinned=b;b.classList.add('pin');showTip(b);});
+document.addEventListener('click',e=>{if(!e.target.closest('.skbox')&&pinned){pinned.classList.remove('pin');pinned=null;hideTip()}});
+addEventListener('scroll',()=>{if(!pinned)hideTip()},{passive:true});
+
+/* ---------- GAME: DATA RUNNER ---------- */
+const c=$('#c'),ctx=c.getContext('2d'),W=680,H=170,GROUND=128,G=.52,JUMP=-11.5,ACC='#38bdf8';
+const dpr=Math.min(devicePixelRatio||1,2);c.width=W*dpr;c.height=H*dpr;c.style.width=W+'px';ctx.scale(dpr,dpr);
+let mode='idle',score=0,best=0,spd=3.2,lvl=1,fr=0,obs=[],gems=[],fx=[],nO=100,nG=70,combo=0,comboT=0,shield=false,banner=0,shake=0;
+try{best=+localStorage.getItem('dr_best')||0}catch(e){}
+$('#bEl').textContent=best;
+const pl={x:90,y:GROUND,w:22,h:30,vy:0,jumps:0};
+const OBS=[{l:'null',w:30,h:26,s:'#38bdf8'},{l:'NaN',w:35,h:24,s:'#ef4444'},{l:'noise',w:40,h:34,s:'#94a3b8'},{l:'outlier',w:45,h:22,s:'#f59e0b'},{l:'bias',w:28,h:44,s:'#a78bfa'}];
+const GEM=[{l:'r²',f:'#22c55e'},{l:'csv',f:'#38bdf8'},{l:'+10',f:'#8b5cf6'},{l:'p<.05',f:'#ec4899'}];
+function burst(x,y,col,n=10){for(let i=0;i<n;i++)fx.push({x,y,vx:(Math.random()-.5)*5,vy:(Math.random()-.8)*4,l:28,col})}
+function jump(){if(mode=='paused'){mode='playing';return}if(mode!='playing'){start();return}if(pl.jumps<2){pl.vy=JUMP;pl.jumps++;burst(pl.x+pl.w/2,pl.y+pl.h,'#475569',4)}}
+function release(){if(pl.vy<-4)pl.vy=-4}
+function start(){mode='playing';score=0;fr=0;spd=3.2;lvl=1;combo=0;shield=false;banner=0;pl.y=GROUND;pl.vy=0;pl.jumps=0;obs=[];gems=[];fx=[];nO=100;nG=70;$('#gsub').textContent='hold jump to go higher · P to pause';$('#runBtn').style.display='none';}
+function die(){mode='dead';shake=14;if(score>best){best=score;try{localStorage.setItem('dr_best',best)}catch(e){}}
+ $('#bEl').textContent=best;$('#gsub').textContent='Pipeline crashed! Score: '+score+(score>=best&&score>0?'  ·  new best!':'');$('#runBtn').style.display='inline-flex';}
+function update(){if(mode!='playing')return;fr++;score++;
+ const nl=Math.floor(score/500)+1;if(nl>lvl){banner=70}lvl=nl;spd=3.2+lvl*.45;
+ $('#sEl').textContent=score;$('#lEl').textContent=lvl;
+ if(comboT>0&&--comboT==0)combo=0;
+ pl.vy+=G;pl.y+=pl.vy;if(pl.y>=GROUND){pl.y=GROUND;pl.vy=0;pl.jumps=0}
+ if(--nO<=0){const t=OBS[Math.random()*OBS.length|0];obs.push({...t,x:W+20,y:GROUND+pl.h-t.h});
+  if(lvl>=2&&Math.random()<.3){const u=OBS[Math.random()*3|0];obs.push({...u,x:W+20+t.w+34,y:GROUND+pl.h-u.h})}
+  nO=Math.max(45,100-lvl*5)+Math.random()*40}
+ if(--nG<=0){const sh=Math.random()<.12,t=sh?{l:'AI',f:'#fbbf24',sh:1}:GEM[Math.random()*4|0];gems.push({...t,x:W+20,y:GROUND-20-Math.random()*50,r:13,a:0});nG=60+Math.random()*80}
+ obs.forEach(o=>{o.x-=spd;if(!o.dead&&o.x<pl.x+pl.w-5&&o.x+o.w>pl.x+5&&pl.y+pl.h>o.y){if(shield){shield=false;o.dead=1;burst(o.x+o.w/2,o.y,'#fbbf24',16);shake=6}else die()}});
+ gems.forEach(g=>{g.x-=spd;g.a+=.05;if(Math.hypot(pl.x+pl.w/2-g.x-g.r,pl.y+pl.h/2-g.y-g.r)<26){g.dead=1;burst(g.x+g.r,g.y+g.r,g.f,12);
+  if(g.sh)shield=true;else{combo=Math.min(combo+1,5);comboT=100;score+=50*combo}}});
+ obs=obs.filter(o=>!o.dead&&o.x+o.w>0);gems=gems.filter(g=>!g.dead&&g.x+g.r*2>0);}
+function draw(){ctx.save();ctx.clearRect(0,0,W,H);
+ if(shake>0){ctx.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake);shake*=.85}
+ // parallax grid
+ const off=(fr*spd*.4)%60;ctx.strokeStyle='rgba(56,189,248,.06)';ctx.lineWidth=1;ctx.beginPath();
+ for(let x=-off;x<W;x+=60){ctx.moveTo(x,0);ctx.lineTo(x,H)}for(let y=30;y<H;y+=40){ctx.moveTo(0,y);ctx.lineTo(W,y)}ctx.stroke();
+ ctx.strokeStyle='#1e293b';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,GROUND+pl.h);ctx.lineTo(W,GROUND+pl.h);ctx.stroke();
+ // player
+ ctx.fillStyle=mode=='dead'?'#ef4444':ACC;ctx.beginPath();ctx.roundRect(pl.x,pl.y,pl.w,pl.h,5);ctx.fill();ctx.fillStyle='#020617';ctx.fillRect(pl.x+12,pl.y+5,4,4);
+ if(shield){ctx.strokeStyle='rgba(251,191,36,'+(.5+.3*Math.sin(fr/6))+')';ctx.lineWidth=2;ctx.beginPath();ctx.arc(pl.x+pl.w/2,pl.y+pl.h/2,24,0,7);ctx.stroke()}
+ ctx.textAlign='center';
+ obs.forEach(o=>{ctx.fillStyle='#1e293b';ctx.strokeStyle=o.s;ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(o.x,o.y,o.w,o.h,4);ctx.fill();ctx.stroke();ctx.fillStyle=o.s;ctx.font='9px monospace';ctx.fillText(o.l,o.x+o.w/2,o.y+o.h/2+4)});
+ gems.forEach(g=>{ctx.save();ctx.translate(g.x+g.r,g.y+g.r);ctx.rotate(g.a);ctx.fillStyle=g.f;ctx.beginPath();ctx.moveTo(0,-g.r);ctx.lineTo(g.r,0);ctx.lineTo(0,g.r);ctx.lineTo(-g.r,0);ctx.fill();ctx.restore();ctx.fillStyle=g.sh?'#020617':'#fff';ctx.font='bold 8px monospace';ctx.fillText(g.l,g.x+g.r,g.y+g.r+3)});
+ fx.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.2;p.l--;ctx.globalAlpha=Math.max(p.l/28,0);ctx.fillStyle=p.col;ctx.fillRect(p.x,p.y,3,3)});ctx.globalAlpha=1;fx=fx.filter(p=>p.l>0);
+ // overlays
+ ctx.textAlign='left';ctx.font='11px monospace';
+ if(mode=='playing'&&combo>1){ctx.fillStyle='#ec4899';ctx.fillText('combo x'+combo,12,20)}
+ if(shield){ctx.fillStyle='#fbbf24';ctx.fillText('shield on',12,combo>1?36:20)}
+ ctx.textAlign='center';
+ if(banner>0){banner--;ctx.globalAlpha=Math.min(banner/30,1);ctx.fillStyle=ACC;ctx.font='bold 18px Inter';ctx.fillText('LEVEL '+lvl,W/2,50);ctx.globalAlpha=1}
+ if(mode=='idle'||mode=='paused'){ctx.fillStyle='rgba(2,6,23,.8)';ctx.fillRect(0,0,W,H);ctx.fillStyle=ACC;ctx.font='14px Inter';ctx.fillText(mode=='idle'?'SPACE / TAP TO START DATA RUN':'PAUSED · PRESS P OR TAP TO RESUME',W/2,H/2)}
+ ctx.restore();update();requestAnimationFrame(draw);}
+const inLab=()=>{const l=$('#lab'),r=l.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0};
+addEventListener('keydown',e=>{if(M.classList.contains('open')||!inLab())return;
+ if(e.code=='Space'||e.code=='ArrowUp'){e.preventDefault();if(!e.repeat)jump()}
+ if(e.code=='KeyP'&&(mode=='playing'||mode=='paused'))mode=mode=='playing'?'paused':'playing'});
+addEventListener('keyup',e=>{if(e.code=='Space'||e.code=='ArrowUp')release()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&mode=='playing')mode='paused'});
+c.addEventListener('touchstart',e=>{e.preventDefault();jump()},{passive:false});c.addEventListener('touchend',release);
+c.addEventListener('mousedown',jump);addEventListener('mouseup',release);$('#runBtn').onclick=start;draw();
+</script>
 </body>
 </html>
