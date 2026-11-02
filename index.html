@@ -350,8 +350,8 @@ const P=[
 const F={all:'All',analytics:'Analytics',ml:'Machine Learning',dl:'Deep Learning',cv:'Computer Vision',auto:'Automation'};
 
 /* CivicCura links: paste your real URLs here */
-const CIVIC={demo:'',deck:'',repo:''};
-const civicBtns=[['demo','fa-play','Live Video Demo','btn-primary'],['deck','fa-file-pdf','Pitch Deck (PDF)','btn-ghost'],['repo','fa-github','GitHub Repository','btn-ghost']];
+const CIVIC={repo:'https://github.com/Ariful579/CivicCura-AI'};
+const civicBtns=[['repo','fa-github','GitHub Repository','btn-primary']];
 $('#civicLinks').innerHTML=civicBtns.map(([k,i,l,cl])=>CIVIC[k]
  ?`<a class="btn ${cl}" href="${CIVIC[k]}" target="_blank" rel="noopener"><i class="${k=='repo'?'fab':'fas'} ${i}"></i>${l}</a>`
  :`<a class="btn ${cl}" aria-disabled="true" title="Link coming soon"><i class="${k=='repo'?'fab':'fas'} ${i}"></i>${l} (soon)</a>`).join('');
